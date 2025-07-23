@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/21 16:41:39 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/23 15:33:56 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			main(int argc, char **argv);
 bool		ft_intersect_plane(t_ray ray, t_plane plane, float *t_out);
 bool		ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 				t_color *color_out);
-void		ft_print_error(char *text);
+int			ft_print_error(char *text, int should_exit);
 void		ft_callback_key(mlx_key_data_t keydata, void *param);
 void		ft_callback_close(void *param);
 void		ft_free_data(t_data *data);
