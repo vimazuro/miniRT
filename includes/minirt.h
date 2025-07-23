@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 12:36:01 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:06:09 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ t_vec3		vec3_scale(t_vec3 v, float scalar);
 t_vec3		vec3_cross(t_vec3 a, t_vec3 b);
 t_vec3		ft_get_normal(t_object *obj, t_vec3 point);
 t_cam_basis	ft_camera_basis(t_camera camera);
-t_color		ft_trace_ray(t_ray ray, t_object *objects, t_light *lights);
-t_color		ft_calc_lighting(t_hit_info s_hit_info, t_light *lights);
+t_color		ft_trace_ray(t_ray ray, t_object *objects, t_light *lights, t_ambient ambient);
+t_color		ft_calc_lighting(t_hit_info s_hit_info, t_light *lights, t_ambient ambient);
 t_color		color_scale(t_color color, float factor);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_multiply(t_color c1, t_color c2);

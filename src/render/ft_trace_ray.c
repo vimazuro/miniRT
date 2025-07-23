@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 11:44:21 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 15:39:11 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:20:27 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void	ft_find_closest_hit(t_ray ray, t_object *objects,
 	}
 }
 
-t_color	ft_trace_ray(t_ray ray, t_object *objects, t_light *lights)
+t_color	ft_trace_ray(t_ray ray, t_object *objects,
+	t_light *lights, t_ambient ambient)
 {
 	t_hit_info	hit_info;
 
@@ -55,5 +56,5 @@ t_color	ft_trace_ray(t_ray ray, t_object *objects, t_light *lights)
 	hit_info.hit_point = vec3_add(ray.origin,
 			vec3_scale(ray.direction, hit_info.t));
 	hit_info.normal = ft_get_normal(hit_info.object, hit_info.hit_point);
-	return (ft_calc_lighting(hit_info, lights));
+	return (ft_calc_lighting(hit_info, lights, ambient));
 }
