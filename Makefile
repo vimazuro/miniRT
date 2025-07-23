@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/21 16:24:32 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/07/23 12:23:40 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,18 @@ SRC_FILES = src/main.c \
 			src/parser/ft_parse_file.c \
 			src/parser/ft_parse_utils.c \
 			src/parser/ft_parse_objects.c \
+			src/render/ft_calc_lighting.c \
 			src/render/ft_vec3_utils1.c \
 			src/render/ft_vec3_utils2.c \
 			src/render/ft_camera_basis.c \
 			src/render/ft_generate_ray.c \
 			src/render/ft_intersect_plane.c \
+			src/render/ft_intersect_sphere.c \
+			src/render/ft_trace_ray.c \
 			src/render/ft_render_scene.c \
 			src/render/ft_hit_object.c \
+			src/render/ft_get_normal.c \
+			src/render/ft_color_utils.c \
 
 OBJS = $(LIBFT_LIB) $(MLX42_LIB) $(SRC_FILES:.c=.o)
 
