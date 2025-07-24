@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 10:17:54 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:52:08 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ bool		ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 				t_color *color_out);
 bool		ft_intersect_plane(t_ray ray, t_plane plane, float *t_out);
 bool		ft_intersect_sphere(t_ray ray, t_sphere sphere, float *t_out);
+bool		ft_intersect_cylinder(t_ray ray, t_cylinder cylinder, float *t_out);
 void		ft_callback_key(mlx_key_data_t keydata, void *param);
 void		ft_callback_close(void *param);
 void		ft_free_data(t_data *data);

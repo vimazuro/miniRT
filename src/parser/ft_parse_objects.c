@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 11:22:14 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:02:52 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	t_cylinder	*cy;
 
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3]
-		|| !tokens[4] || tokens[5])
+		|| !tokens[4] || !tokens[5] || tokens[6])
 	{
 		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
 		return (1);
