@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 10:16:05 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:17:54 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ typedef struct s_hit_info
 }	t_hit_info;
 
 int			main(int argc, char **argv);
+int			ft_print_error(char *text, int should_exit);
 bool		ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 				t_color *color_out);
 bool		ft_intersect_plane(t_ray ray, t_plane plane, float *t_out);
 bool		ft_intersect_sphere(t_ray ray, t_sphere sphere, float *t_out);
-void		ft_print_error(char *text);
 void		ft_callback_key(mlx_key_data_t keydata, void *param);
 void		ft_callback_close(void *param);
 void		ft_free_data(t_data *data);
