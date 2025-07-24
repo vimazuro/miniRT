@@ -6,7 +6,7 @@
 #    By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/24 10:02:06 by hmunoz-g         ###   ########.fr        #
+#    Updated: 2025/07/24 10:16:25 by hmunoz-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,18 @@ SRC_FILES = src/main.c \
 			src/parser/ft_parse_utils.c \
 			src/parser/ft_parse_utils_2.c \
 			src/parser/ft_parse_objects.c \
+			src/render/ft_calc_lighting.c \
 			src/render/ft_vec3_utils1.c \
 			src/render/ft_vec3_utils2.c \
 			src/render/ft_camera_basis.c \
 			src/render/ft_generate_ray.c \
 			src/render/ft_intersect_plane.c \
+			src/render/ft_intersect_sphere.c \
+			src/render/ft_trace_ray.c \
 			src/render/ft_render_scene.c \
 			src/render/ft_hit_object.c \
+			src/render/ft_get_normal.c \
+			src/render/ft_color_utils.c \
 
 OBJS = $(LIBFT_LIB) $(MLX42_LIB) $(SRC_FILES:.c=.o)
 
