@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:35:32 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 16:43:56 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:06:20 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_check_colors(char **colors)
 		ft_print_error(ERROR_AMBIENT_BAD_COLORS, 0);
 		return (1);
 	}
-		ft_free_split(colors);
+	ft_free_split(colors);
 	return (0);
 }
 
@@ -71,9 +71,9 @@ int	ft_parse_camera(t_data *data, char **tokens)
 	position = ft_parse_vec3(tokens[1]);
 	orientation = ft_parse_vec3(tokens[2]);
 	fov = ft_atoi(tokens[3]);
-	if (ft_check_position(position) || ft_check_coordinate_amount(tokens[1]))
+	if (ft_check_position(position) || ft_check_coordinates(tokens[1]))
 		return (1);
-	if (ft_check_orientation(orientation) || ft_check_coordinate_amount(tokens[2]))
+	if (ft_check_orientation(orientation) || ft_check_coordinates(tokens[2]))
 		return (1);
 	if (fov < 0 || fov > 180)
 	{
@@ -100,7 +100,7 @@ int	ft_parse_light(t_data *data, char **tokens)
 	light->brightness = ft_atof(tokens[2]);
 	light->color = ft_parse_color(tokens[3]);
 	light->next = data->lights;
-	if (ft_check_position(light->position) || ft_check_coordinate_amount(tokens[1]))
+	if (ft_check_position(light->position) || ft_check_coordinates(tokens[1]))
 	{
 		free(light);
 		return (1);

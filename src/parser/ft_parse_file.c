@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:06:05 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 15:56:19 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:09:09 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_parse_line(t_data *data, char *line, t_counter *counter)
 		flag = ft_parse_cylinder(data, tokens);
 	else
 		flag = ft_print_error(ERROR_ELEMENTS_UNKNOWN, 0);
-	flag += ft_count_objects(counter, tokens[0]);
+	ft_add_object(counter, tokens[0]);
 	ft_free_split(tokens);
 	return (flag);
 }
@@ -97,5 +97,5 @@ int	ft_parse_file(t_data *data, char *filename)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (0);
+	return (ft_count_objects(&counter));
 }

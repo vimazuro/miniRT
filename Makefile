@@ -6,7 +6,7 @@
 #    By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/23 16:36:42 by hmunoz-g         ###   ########.fr        #
+#    Updated: 2025/07/24 10:02:06 by hmunoz-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ LIBFT_HEADERS = libft/include/libft.h libft/include/ft_printf.h
 
 SRC_FILES = src/main.c \
 			src/utils/ft_print_error.c \
-			src/utils/ft_count_objects.c \
 			src/utils/ft_callback.c \
 			src/utils/ft_free_data.c \
 			src/parser/ft_parse_acl.c \

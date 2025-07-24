@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 16:36:15 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:04:53 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@
 # define ERROR_MLX_NEW_IMAGE "Error\nmlx_new_image failed\n"
 # define ERROR_MLX_IMAGE_TO_WINDOW "Error:\nmlx_image_to_window failed\n"
 # define ERROR_MALLOC "Error:\nmalloc failed\n"
-# define ERROR_OBJECTS_EXCESS_AMBIENT "Error:\nexcess ambient light\n"
-# define ERROR_OBJECTS_EXCESS_CAMERA "Error:\nexcess camera\n"
-# define ERROR_OBJECTS_EXCESS_LIGHT "Error:\nexcess light sources\n"
+# define ERROR_AMBIENT_BAD_COUNT "Error:\nambient light: bad count\n"
 # define ERROR_AMBIENT_BAD_PARAMS "Error:\nambient light: bad parameters\n"
 # define ERROR_AMBIENT_BAD_RATIO "Error:\nambient light: bad ratio\n"
 # define ERROR_AMBIENT_BAD_COLORS "Error:\nambient light: bad colors\n"
+# define ERROR_CAMERA_BAD_COUNT "Error:\ncamera: bad count\n"
 # define ERROR_CAMERA_BAD_PARAMS "Error:\ncamera: bad parameters\n"
 # define ERROR_CAMERA_BAD_POSITION "Error:\ncamera: bad position\n"
 # define ERROR_CAMERA_BAD_ORIENTATION "Error:\ncamera: bad orientation\n"
 # define ERROR_CAMERA_BAD_FOV "Error:\ncamera: bad field of view\n"
+# define ERROR_LIGHT_BAD_COUNT "Error:\nlight: bad count\n"
 # define ERROR_LIGHT_BAD_PARAMS "Error:\nlight: bad parameters\n"
 # define ERROR_LIGHT_BAD_POSITION "Error:\nlight: bad position\n"
 # define ERROR_LIGHT_BAD_BRIGHTNESS "Error:\nlight: bad brightness\n"
@@ -136,8 +136,6 @@ typedef struct s_counter
 }	t_counter;
 
 int		ft_parse_file(t_data *data, char *filename);
-void	ft_check_file_extension(char *filename, char *extension);
-void	ft_check_file_access(char *filename);
 int		ft_parse_line(t_data *data, char *line, t_counter *counter);
 int		ft_parse_ambient(t_data *data, char **tokens);
 int		ft_parse_camera(t_data *data, char **tokens);
@@ -145,13 +143,16 @@ int		ft_parse_light(t_data *data, char **tokens);
 int		ft_parse_sphere(t_data *data, char **tokens);
 int		ft_parse_cylinder(t_data *data, char **tokens);
 int		ft_parse_plane(t_data *data, char **tokens);
-int		ft_count_objects(t_counter *counter, char *type);
-void	ft_free_split(char **ptr);
-t_color	ft_parse_color(char *str);
-t_vec3	ft_parse_vec3(char *str);
+int		ft_count_objects(t_counter *counter);
 int		ft_check_ratio(float ratio);
 int		ft_check_position(t_vec3 position);
 int		ft_check_orientation(t_vec3 orientation);
-int		ft_check_coordinate_amount(char *coords);
+int		ft_check_coordinates(char *coords);
+void	ft_check_file_extension(char *filename, char *extension);
+void	ft_check_file_access(char *filename);
+void	ft_add_object(t_counter *counter, char *type);
+void	ft_free_split(char **ptr);
+t_color	ft_parse_color(char *str);
+t_vec3	ft_parse_vec3(char *str);
 
 #endif

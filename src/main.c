@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:33:10 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 15:35:27 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:45:11 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 		ft_print_error(ERROR_ARGUMENTS_AMOUNT, 1);
 	if (ft_parse_file(&data, argv[1]))
 		return (1);
+	//ft_transfer_data(&data, argv[1]);
 	data.mlx = mlx_init(WINDOW_W, WINDOW_H, argv[1], false);
 	if (!data.mlx)
 		ft_print_error(ERROR_MLX_INIT, 1);
