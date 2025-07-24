@@ -6,30 +6,21 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:35:32 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 10:06:20 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:38:31 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static int	ft_check_colors(char **colors)
+int	ft_check_colors(t_color *colors)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	if (!colors || !colors[0] || !colors[1] || !colors[2])
-		return (1);
-	r = ft_atoi(colors[0]);
-	g = ft_atoi(colors[1]);
-	b = ft_atoi(colors[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255 || colors[3])
+	if (colors->r < 0 || colors->r > 255
+		|| colors->g < 0 || colors->g > 255
+		|| colors->b < 0 || colors->b > 255)
 	{
-		ft_free_split(colors);
 		ft_print_error(ERROR_AMBIENT_BAD_COLORS, 0);
 		return (1);
 	}
-	ft_free_split(colors);
 	return (0);
 }
 
@@ -47,13 +38,15 @@ int	ft_parse_ambient(t_data *data, char **tokens)
 	colors = ft_split(tokens[2], ',');
 	if ((ratio < 0 || ratio > 1))
 	{
+		ft_free_split(colors);
 		ft_print_error(ERROR_AMBIENT_BAD_RATIO, 0);
 		return (1);
 	}
-	if (ft_check_colors(colors))
-		return (1);
+	ft_free_split(colors);
 	data->ambient.lighting = ratio;
 	data->ambient.color = ft_parse_color(tokens[2]);
+	if (ft_check_colors(&data->ambient.color))
+		return (1);
 	return (0);
 }
 

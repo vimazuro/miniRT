@@ -6,13 +6,13 @@
 #    By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/24 10:16:25 by hmunoz-g         ###   ########.fr        #
+#    Updated: 2025/07/24 11:43:08 by hmunoz-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LIBFT_INC_DIR = libft/include 
 MLX42_INC_DIR = MLX42/include
 LIBFT_DIR = libft/

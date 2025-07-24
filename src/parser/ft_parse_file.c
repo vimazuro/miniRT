@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:06:05 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 10:09:09 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:40:12 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	ft_parse_line(t_data *data, char *line, t_counter *counter)
 
 	tokens = ft_split(line, ' ');
 	if (!tokens || !tokens[0])
+	{
+		ft_free_split(tokens);
 		return (0);
+	}
 	if (ft_strcmp(tokens[0], "A") == 0)
 		flag = ft_parse_ambient(data, tokens);
 	else if (ft_strcmp(tokens[0], "C") == 0)
@@ -91,7 +94,9 @@ int	ft_parse_file(t_data *data, char *filename)
 		{
 			free(line);
 			close(fd);
-			exit(EXIT_FAILURE);
+			while ((line = get_next_line(fd)) != NULL)
+				free(line);
+			return(1);
 		}
 		free(line);
 		line = get_next_line(fd);

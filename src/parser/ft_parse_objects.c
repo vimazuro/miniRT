@@ -6,59 +6,85 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 15:40:09 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:22:14 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
+static void	ft_transfer_object(t_data *data, int type, void *object_data)
+{
+	t_object	*obj;
+
+	obj = malloc(sizeof(t_object));
+	if (!obj)
+		ft_print_error(ERROR_MALLOC, 0);
+	obj->type = type;
+	obj->data = object_data;
+	obj->next = data->objects;
+	data->objects = obj;
+}
+
 int	ft_parse_plane(t_data *data, char **tokens)
 {
 	t_plane		*pl;
-	t_object	*obj;
 
+	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+	{
+		ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
+		return (1);
+	}
 	pl = malloc(sizeof(t_plane));
 	if (!pl)
 		ft_print_error(ERROR_MALLOC, 0);
 	pl->point = ft_parse_vec3(tokens[1]);
 	pl->normal = vec3_normalize(ft_parse_vec3(tokens[2]));
 	pl->color = ft_parse_color(tokens[3]);
-	obj = malloc(sizeof(t_object));
-	if (!obj)
-		ft_print_error(ERROR_MALLOC, 0);
-	obj->type = PLANE;
-	obj->data = pl;
-	obj->next = data->objects;
-	data->objects = obj;
+	if (ft_check_position(pl->point) || ft_check_orientation(pl->normal)
+		|| ft_check_colors(&pl->color))
+	{
+		free(pl);
+		return (1);
+	}
+	ft_transfer_object(data, PLANE, pl);
 	return (0);
 }
 
 int	ft_parse_sphere(t_data *data, char **tokens)
 {
 	t_sphere	*sp;
-	t_object	*obj;
 
+	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+	{
+		ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
+		return (1);
+	}
 	sp = malloc(sizeof(t_sphere));
 	if (!sp)
 		ft_print_error(ERROR_MALLOC, 0);
 	sp->center = ft_parse_vec3(tokens[1]);
 	sp->diameter = ft_atof(tokens[2]);
 	sp->color = ft_parse_color(tokens[3]);
-	obj = malloc(sizeof(t_object));
-	if (!obj)
-		ft_print_error(ERROR_MALLOC, 0);
-	obj->type = SPHERE;
-	obj->data = sp;
-	obj->next = data->objects;
-	data->objects = obj;
+	if (ft_check_position(sp->center) || sp->diameter <= 0
+		|| ft_check_colors(&sp->color))
+	{
+		free(sp);
+		return (1);
+	}
+	ft_transfer_object(data, SPHERE, sp);
 	return (0);
 }
 
 int	ft_parse_cylinder(t_data *data, char **tokens)
 {
 	t_cylinder	*cy;
-	t_object	*obj;
 
+	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3]
+		|| !tokens[4] || tokens[5])
+	{
+		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
+		return (1);
+	}
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
 		ft_print_error(ERROR_MALLOC, 0);
@@ -67,12 +93,12 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	cy->diameter = ft_atof(tokens[3]);
 	cy->height = ft_atof(tokens[4]);
 	cy->color = ft_parse_color(tokens[5]);
-	obj = malloc(sizeof(t_object));
-	if (!obj)
-		ft_print_error(ERROR_MALLOC, 0);
-	obj->type = CYLINDER;
-	obj->data = cy;
-	obj->next = data->objects;
-	data->objects = obj;
+	if (ft_check_position(cy->point) || ft_check_orientation(cy->orientation)
+		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color))
+	{
+		free(cy);
+		return (1);
+	}
+	ft_transfer_object(data, CYLINDER, cy);
 	return (0);
 }

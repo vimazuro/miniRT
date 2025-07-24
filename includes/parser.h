@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 10:04:53 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/24 11:13:24 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 # define ERROR_LIGHT_BAD_PARAMS "Error:\nlight: bad parameters\n"
 # define ERROR_LIGHT_BAD_POSITION "Error:\nlight: bad position\n"
 # define ERROR_LIGHT_BAD_BRIGHTNESS "Error:\nlight: bad brightness\n"
+# define ERROR_OBJECTS_SPHERE_BAD_PARAMS "Error:\nsphere: bad parameters\n"
+# define ERROR_OBJECTS_PLANE_BAD_PARAMS "Error:\nplane: bad parameters\n"
+# define ERROR_OBJECTS_CYLINDER_BAD_PARAMS "Error:\ncylinder: bad parameters\n"
+# define ERROR_OBJECTS_CONE_BAD_PARAMS "Error:\ncone: bad parameters\n"
 
 typedef struct s_color
 {
@@ -148,6 +152,7 @@ int		ft_check_ratio(float ratio);
 int		ft_check_position(t_vec3 position);
 int		ft_check_orientation(t_vec3 orientation);
 int		ft_check_coordinates(char *coords);
+int		ft_check_colors(t_color *colors);
 void	ft_check_file_extension(char *filename, char *extension);
 void	ft_check_file_access(char *filename);
 void	ft_add_object(t_counter *counter, char *type);
