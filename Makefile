@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
+#    By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/23 12:23:40 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/07/25 10:13:56 by hmunoz-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 LIBFT_INC_DIR = libft/include 
 MLX42_INC_DIR = MLX42/include
 LIBFT_DIR = libft/
@@ -29,6 +29,7 @@ SRC_FILES = src/main.c \
 			src/parser/ft_parse_acl.c \
 			src/parser/ft_parse_file.c \
 			src/parser/ft_parse_utils.c \
+			src/parser/ft_parse_utils_2.c \
 			src/parser/ft_parse_objects.c \
 			src/render/ft_calc_lighting.c \
 			src/render/ft_vec3_utils1.c \
@@ -37,6 +38,8 @@ SRC_FILES = src/main.c \
 			src/render/ft_generate_ray.c \
 			src/render/ft_intersect_plane.c \
 			src/render/ft_intersect_sphere.c \
+			src/render/ft_intersect_cylinder.c \
+			src/render/ft_intersect_cone.c \
 			src/render/ft_trace_ray.c \
 			src/render/ft_render_scene.c \
 			src/render/ft_hit_object.c \

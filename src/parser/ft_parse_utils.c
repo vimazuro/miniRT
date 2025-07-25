@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:28:55 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/21 16:46:30 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:33:07 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+int	ft_check_position(t_vec3 position)
+{
+	if (position.x < -50 || position.x > 50
+		|| position.y < -50 || position.y > 50
+		|| position.z < -50 || position.z > 50)
+	{
+		ft_print_error(ERROR_CAMERA_BAD_POSITION, 0);
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_check_orientation(t_vec3 orientation)
+{
+	if (orientation.x < -1 || orientation.x > 1
+		|| orientation.y < -1 || orientation.y > 1
+		|| orientation.z < -1 || orientation.z > 1)
+	{
+		ft_print_error(ERROR_CAMERA_BAD_ORIENTATION, 0);
+		return (1);
+	}
+	return (0);
+}
 
 t_color	ft_parse_color(char *str)
 {

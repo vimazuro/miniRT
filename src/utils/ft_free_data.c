@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:58:17 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/21 16:30:05 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:00:01 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+void	ft_cleanup_remaining_lines(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}
 
 static void	ft_free_lights(t_light *light)
 {
@@ -37,6 +49,10 @@ static void	ft_free_objects(t_object *obj)
 				free((t_sphere *)obj->data);
 			else if (obj->type == PLANE)
 				free((t_plane *)obj->data);
+			else if (obj->type == CYLINDER)
+				free((t_cylinder *)obj->data);
+			/* else if (obj->type == CONE)
+				free((t_cone *)obj->data); */
 		}
 		free(obj);
 		obj = tmp;

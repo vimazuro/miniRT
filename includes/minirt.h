@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 10:11:16 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/25 11:15:21 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,20 @@ typedef struct	s_light_calc
 
 
 int			main(int argc, char **argv);
+int			ft_print_error(char *text, int should_exit);
 bool		ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 				t_color *color_out);
 bool		ft_intersect_plane(t_ray ray, t_plane plane, float *t_out);
 bool		ft_intersect_sphere(t_ray ray, t_sphere sphere, float *t_out);
-void		ft_print_error(char *text);
+bool		ft_intersect_cylinder(t_ray ray, t_cylinder cylinder, float *t_out);
+bool		ft_intersect_cone(t_ray ray, t_cone cone, float *t_out);
 void		ft_callback_key(mlx_key_data_t keydata, void *param);
 void		ft_callback_close(void *param);
 void		ft_free_data(t_data *data);
 void		ft_render_scene(t_data *data);
-float		vec3_lenght(t_vec3 v);
+float		vec3_length(t_vec3 v);
 float		vec3_dot(t_vec3 a, t_vec3 b);
+float		vec3_length(t_vec3 v);
 t_vec3		vec3(float x, float y, float z);
 t_vec3		vec3_add(t_vec3 a, t_vec3 b);
 t_vec3		vec3_sub(t_vec3 a, t_vec3 b);
