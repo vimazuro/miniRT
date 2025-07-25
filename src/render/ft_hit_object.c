@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 16:20:18 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 12:06:44 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:12:05 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ bool	ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 		if (ft_intersect_cylinder(ray, *cylinder, t_out))
 		{
 			*color_out = cylinder->color;
+			return (true);
+		}
+	}
+	else if (obj->type == CONE)
+	{
+		t_cone *cone = (t_cone *)obj->data;
+		if (ft_intersect_cone(ray, *cone, t_out))
+		{
+			*color_out = cone->color;
 			return (true);
 		}
 	}

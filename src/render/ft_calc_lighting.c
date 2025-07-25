@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:58:23 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 16:05:20 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:45:12 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_color	ft_calc_lighting(t_hit_info hit, t_light *lights, t_ambient ambient)
 		if (light_iter->brightness > 0.0f)
 		{
 			t_vec3 light_vector = vec3_sub(light_iter->position, hit.hit_point);
-			float distance = vec3_lenght(light_vector);
+			float distance = vec3_length(light_vector);
 			t_vec3 light_dir_norm = vec3_normalize(light_vector);
 			
 			float intensity = fmaxf(vec3_dot(hit.normal, light_dir_norm), 0.0f);
@@ -48,7 +48,7 @@ t_color	ft_calc_lighting(t_hit_info hit, t_light *lights, t_ambient ambient)
 		if (lights->brightness > 0.0f)
 		{
 			t_vec3 light_vector = vec3_sub(lights->position, hit.hit_point);
-			float distance = vec3_lenght(light_vector);
+			float distance = vec3_length(light_vector);
 			light_dir = vec3_normalize(light_vector);
 			
 			diff_intensity = fmaxf(vec3_dot(hit.normal, light_dir), 0.0f);
@@ -69,3 +69,24 @@ t_color	ft_calc_lighting(t_hit_info hit, t_light *lights, t_ambient ambient)
 	
 	return (color_multiply(hit.color, result));
 }
+
+/* t_color	ft_calc_lighting(t_hit_info hit, t_light *lights, t_ambient ambient)
+{
+	t_color	result;
+	t_vec3	light_dir;
+	float	diff_intensity;
+	t_color	light_contrib;
+
+	result = color_multiply(hit.color,
+			color_scale(ambient.color, ambient.lighting));
+	while (lights)
+	{
+		light_dir = vec3_normalize(vec3_sub(lights->position, hit.hit_point));
+		diff_intensity = fmaxf(vec3_dot(hit.normal, light_dir), 0.0f);
+		light_contrib = color_scale(lights->color,
+				lights->brightness * diff_intensity);
+		result = color_add(result, color_multiply(hit.color, light_contrib));
+		lights = lights->next;
+	}
+	return (result);
+} */

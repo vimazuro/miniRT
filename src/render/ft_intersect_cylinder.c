@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+1) Set up a quadratic equation for the infinite cylinder.
+2) Solve it for intersection points along the ray.
+3) Check if those points are within the finite height of the cylinder.
+4) Return the closest valid intersection.
+*/
+
 #include "../../includes/minirt.h"
 
 static bool	ft_check_cylinder_caps(t_ray ray, t_cylinder cylinder, float t)

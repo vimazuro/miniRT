@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_trace_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 11:44:21 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/23 16:20:27 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/25 09:43:45 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_init_hit_info(t_hit_info *hit_info)
 {
 	hit_info->t = INFINITY;
-	hit_info->color = (t_color){0, 0, 0, 0};
+	hit_info->color = (t_color){0, 0, 0, 255};
 	hit_info->hit_point = (t_vec3){0, 0, 0};
 	hit_info->normal = (t_vec3){0, 0, 0};
 	hit_info->object = NULL;

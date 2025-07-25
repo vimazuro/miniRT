@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 12:02:52 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:01:41 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,33 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 		return (1);
 	}
 	ft_transfer_object(data, CYLINDER, cy);
+	return (0);
+}
+
+int ft_parse_cone(t_data *data, char **tokens)
+{
+	t_cone	*cone;
+
+	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3]
+		|| !tokens[4] || !tokens[5] || tokens[6])
+	{
+		ft_print_error(ERROR_OBJECTS_CONE_BAD_PARAMS, 0);
+		return (1);
+	}
+	cone = malloc(sizeof(t_cone));
+	if (!cone)
+		ft_print_error(ERROR_MALLOC, 0);
+	cone->point = ft_parse_vec3(tokens[1]);
+	cone->orientation = vec3_normalize(ft_parse_vec3(tokens[2]));
+	cone->angle = ft_atof(tokens[3]);
+	cone->height = ft_atof(tokens[4]);
+	cone->color = ft_parse_color(tokens[5]);
+	if (ft_check_position(cone->point) || ft_check_orientation(cone->orientation)
+		|| cone->angle <= 0 || cone->height <= 0 || ft_check_colors(&cone->color))
+	{
+		free(cone);
+		return (1);
+	}
+	ft_transfer_object(data, CONE, cone);
 	return (0);
 }

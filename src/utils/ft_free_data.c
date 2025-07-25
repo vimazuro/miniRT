@@ -6,11 +6,23 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:58:17 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 11:16:20 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:00:01 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+void	ft_cleanup_remaining_lines(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+}
 
 static void	ft_free_lights(t_light *light)
 {

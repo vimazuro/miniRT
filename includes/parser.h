@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 11:52:18 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 10:03:08 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,15 @@ typedef struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	t_vec3	point;
+	t_vec3	orientation;
+	float	angle;
+	float	height;
+	t_color	color;
+}	t_cone;
+
 typedef struct s_plane
 {
 	t_vec3	point;
@@ -147,6 +156,7 @@ int		ft_parse_light(t_data *data, char **tokens);
 int		ft_parse_sphere(t_data *data, char **tokens);
 int		ft_parse_cylinder(t_data *data, char **tokens);
 int		ft_parse_plane(t_data *data, char **tokens);
+int		ft_parse_cone(t_data *data, char **tokens);
 int		ft_count_objects(t_counter *counter);
 int		ft_check_ratio(float ratio);
 int		ft_check_position(t_vec3 position);
@@ -157,6 +167,7 @@ void	ft_check_file_extension(char *filename, char *extension);
 void	ft_check_file_access(char *filename);
 void	ft_add_object(t_counter *counter, char *type);
 void	ft_free_split(char **ptr);
+void	ft_cleanup_remaining_lines(int fd);
 t_color	ft_parse_color(char *str);
 t_vec3	ft_parse_vec3(char *str);
 

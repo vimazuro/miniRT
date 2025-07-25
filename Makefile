@@ -6,7 +6,7 @@
 #    By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/24 15:27:14 by hmunoz-g         ###   ########.fr        #
+#    Updated: 2025/07/25 10:13:56 by hmunoz-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_FILES = src/main.c \
 			src/render/ft_intersect_plane.c \
 			src/render/ft_intersect_sphere.c \
 			src/render/ft_intersect_cylinder.c \
+			src/render/ft_intersect_cone.c \
 			src/render/ft_trace_ray.c \
 			src/render/ft_render_scene.c \
 			src/render/ft_hit_object.c \
