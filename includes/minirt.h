@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 10:44:33 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 11:15:21 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@ typedef struct s_hit_info
 	t_vec3		normal;
 	t_object	*object;
 }	t_hit_info;
+
+typedef struct	s_light_calc
+{
+	t_vec3	light_vector;
+	t_vec3	light_dir;
+	float	distance;
+	float	diff_intensity;
+	float	attenuation;
+	t_color	light_contrib;
+}	t_light_calc;
+
 
 int			main(int argc, char **argv);
 int			ft_print_error(char *text, int should_exit);
