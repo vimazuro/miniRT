@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:35:32 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 11:15:48 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 11:16:22 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int	ft_parse_camera(t_data *data, char **tokens)
 int	ft_parse_light(t_data *data, char **tokens)
 {
 	t_light	*light;
-	t_light	*current;
 
 	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
 	{

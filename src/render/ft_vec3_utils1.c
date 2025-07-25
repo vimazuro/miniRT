@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vec3_utils1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 15:04:57 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/21 16:33:55 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/25 11:17:29 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
 	res.y = a.y - b.y;
 	res.z = a.z - b.z;
 	return (res);
-}
-
-float	vec3_lenght(t_vec3 v)
-{
-	float	len;
-
-	len = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
-	return (len);
 }
 
 t_vec3	vec3_normalize(t_vec3 v)

@@ -6,7 +6,7 @@
 /*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:58:23 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 11:15:04 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/25 11:16:52 by hmunoz-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_color	ft_calc_lighting(t_hit_info hit, t_light *lights, t_ambient ambient)
 		if (lights->brightness > 0.0f)
 		{
 			lc.light_vector = vec3_sub(lights->position, hit.hit_point);
-			lc.distance = vec3_lenght(lc.light_vector);
+			lc.distance = vec3_length(lc.light_vector);
 			lc.light_dir = vec3_normalize(lc.light_vector);
 			lc.diff_intensity = fmaxf(vec3_dot(hit.normal, lc.light_dir), 0.0f);
 			lc.attenuation = 1.0f / (1.0f + 0.09f * lc.distance
@@ -37,4 +37,4 @@ t_color	ft_calc_lighting(t_hit_info hit, t_light *lights, t_ambient ambient)
 		lights = lights->next;
 	}
 	return (result);
-} */
+}
