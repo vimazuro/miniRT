@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:40:03 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/21 16:49:01 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/25 14:34:22 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ t_ray	ft_generate_ray(t_camera cam, t_cam_basis basis, int x, int y)
 	ray.origin = cam.position;
 	ray.direction = vec3_normalize(vec3_add(vec3_add(offset_right,
 					offset_up), basis.forward));
+	ray.depth = 0;
+	ray.reflected = NULL;
 	return (ray);
 }

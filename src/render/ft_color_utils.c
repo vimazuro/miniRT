@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 12:22:59 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/24 16:15:03 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:32:12 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ t_color	color_multiply(t_color c1, t_color c2)
 	result.r = (c1.r * c2.r) / 255;
 	result.g = (c1.g * c2.g) / 255;
 	result.b = (c1.b * c2.b) / 255;
+	result.pixel_color = (result.r << 24) | (result.g << 16)
+		| (result.b << 8) | 255;
+	return (result);
+}
+
+t_color	color_lerp(t_color c1, t_color c2, float t)
+{
+	t_color	result;
+
+	result.r = (1 - t) * c1.r + t * c2.r;
+	result.g = (1 - t) * c1.g + t * c2.g;
+	result.b = (1 - t) * c1.b + t * c2.b;
 	result.pixel_color = (result.r << 24) | (result.g << 16)
 		| (result.b << 8) | 255;
 	return (result);
