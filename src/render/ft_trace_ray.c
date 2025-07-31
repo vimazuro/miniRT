@@ -6,13 +6,13 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 11:44:21 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/29 14:44:05 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:04:50 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static void	ft_init_hit_info(t_hit_info *hit_info)
+void	ft_init_hit_info(t_hit_info *hit_info)
 {
 	hit_info->t = INFINITY;
 	hit_info->color = (t_color){0, 0, 0, 255};
@@ -22,7 +22,7 @@ static void	ft_init_hit_info(t_hit_info *hit_info)
 	hit_info->reflection = 0.0f;
 }
 
-static void	ft_find_closest_hit(t_ray ray, t_object *objects,
+void	ft_find_closest_hit(t_ray ray, t_object *objects,
 	t_hit_info *hit_info)
 {
 	t_object	*obj;
@@ -73,7 +73,7 @@ t_color	ft_trace_ray(t_data *data, t_ray ray)
 			vec3_scale(ray.direction, hit_info.t));
 	hit_info.normal = ft_get_normal(hit_info.object, hit_info.hit_point);
 	hit_info.reflection = ft_get_reflection(hit_info.object);
-	ray.color = ft_calc_lighting(hit_info, data->lights, data->ambient);
+	ray.color = ft_calc_lighting(hit_info, data);
 	if (hit_info.reflection > 0.0f && ray.depth < MAX_DEPTH)
 		ft_process_reflection(data, &ray, hit_info);
 	if (ray.reflected)
