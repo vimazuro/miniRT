@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:58:17 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 10:00:01 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:02:49 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	ft_free_objects(t_object *obj)
 				free((t_plane *)obj->data);
 			else if (obj->type == CYLINDER)
 				free((t_cylinder *)obj->data);
-			/* else if (obj->type == CONE)
-				free((t_cone *)obj->data); */
+			else if (obj->type == CONE)
+				free((t_cone *)obj->data);
 		}
 		free(obj);
 		obj = tmp;

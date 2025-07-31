@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_objects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 10:01:41 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:05:46 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ static void	ft_transfer_object(t_data *data, int type, void *object_data)
 int	ft_parse_plane(t_data *data, char **tokens)
 {
 	t_plane		*pl;
+	int			count;
 
-	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+	count = 0;
+	while (tokens[count])
+		count++;
+	if (count < 4 || count > 5)
 	{
 		ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
 		return (1);
@@ -40,6 +44,10 @@ int	ft_parse_plane(t_data *data, char **tokens)
 	pl->point = ft_parse_vec3(tokens[1]);
 	pl->normal = vec3_normalize(ft_parse_vec3(tokens[2]));
 	pl->color = ft_parse_color(tokens[3]);
+	if (tokens[4])
+		pl->reflection = ft_atof(tokens[4]);
+	else
+		pl->reflection = 0.0f;
 	if (ft_check_position(pl->point) || ft_check_orientation(pl->normal)
 		|| ft_check_colors(&pl->color))
 	{
@@ -53,8 +61,12 @@ int	ft_parse_plane(t_data *data, char **tokens)
 int	ft_parse_sphere(t_data *data, char **tokens)
 {
 	t_sphere	*sp;
+	int			count;
 
-	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3] || tokens[4])
+	count = 0;
+	while (tokens[count])
+		count++;
+	if (count < 4 || count > 5)
 	{
 		ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
 		return (1);
@@ -65,6 +77,10 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 	sp->center = ft_parse_vec3(tokens[1]);
 	sp->diameter = ft_atof(tokens[2]);
 	sp->color = ft_parse_color(tokens[3]);
+	if (tokens[4])
+		sp->reflection = ft_atof(tokens[4]);
+	else
+		sp->reflection = 0.0f;
 	if (ft_check_position(sp->center) || sp->diameter <= 0
 		|| ft_check_colors(&sp->color))
 	{
@@ -78,9 +94,12 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 int	ft_parse_cylinder(t_data *data, char **tokens)
 {
 	t_cylinder	*cy;
+	int			count;
 
-	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3]
-		|| !tokens[4] || !tokens[5] || tokens[6])
+	count = 0;
+	while (tokens[count])
+		count++;
+	if (count < 6 || count > 7)
 	{
 		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
 		return (1);
@@ -93,6 +112,10 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	cy->diameter = ft_atof(tokens[3]);
 	cy->height = ft_atof(tokens[4]);
 	cy->color = ft_parse_color(tokens[5]);
+	if (tokens[6])
+		cy->reflection = ft_atof(tokens[6]);
+	else
+		cy->reflection = 0.0f;
 	if (ft_check_position(cy->point) || ft_check_orientation(cy->orientation)
 		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color))
 	{
@@ -103,12 +126,15 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	return (0);
 }
 
-int ft_parse_cone(t_data *data, char **tokens)
+int	ft_parse_cone(t_data *data, char **tokens)
 {
 	t_cone	*cone;
+	int		count;
 
-	if (!tokens[0] || !tokens[1] || !tokens[2] || !tokens[3]
-		|| !tokens[4] || !tokens[5] || tokens[6])
+	count = 0;
+	while (tokens[count])
+		count++;
+	if (count < 6 || count > 7)
 	{
 		ft_print_error(ERROR_OBJECTS_CONE_BAD_PARAMS, 0);
 		return (1);
@@ -121,6 +147,10 @@ int ft_parse_cone(t_data *data, char **tokens)
 	cone->angle = ft_atof(tokens[3]);
 	cone->height = ft_atof(tokens[4]);
 	cone->color = ft_parse_color(tokens[5]);
+	if (tokens[6])
+		cone->reflection = ft_atof(tokens[6]);
+	else
+		cone->reflection = 0.0f;
 	if (ft_check_position(cone->point) || ft_check_orientation(cone->orientation)
 		|| cone->angle <= 0 || cone->height <= 0 || ft_check_colors(&cone->color))
 	{

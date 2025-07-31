@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   ft_get_reflection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 13:54:29 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/29 14:48:27 by vimazuro         ###   ########.fr       */
+/*   Created: 2025/07/25 12:59:58 by vimazuro          #+#    #+#             */
+/*   Updated: 2025/07/28 14:11:48 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	ft_print_error(char *text, int should_exit)
+float	ft_get_reflection(t_object *obj)
 {
-	ft_putstr_fd(text, 2);
-	if (should_exit)
-		exit(EXIT_FAILURE);
-	return (1);
+	if (obj->type == SPHERE)
+		return (((t_sphere *)obj->data)->reflection);
+	if (obj->type == PLANE)
+		return (((t_plane *)obj->data)->reflection);
+	if (obj->type == CYLINDER)
+		return (((t_cylinder *)obj->data)->reflection);
+	if (obj->type == CONE)
+		return (((t_cone *)obj->data)->reflection);
+	return (0.0f);
 }

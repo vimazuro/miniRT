@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmunoz-g <hmunoz-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/25 10:03:08 by hmunoz-g         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:57:12 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <fcntl.h>
 
-# define ERROR_ARGUMENTS_AMOUNT "Error\nbad arguments (try ./miniRT <path_to_file.rt>\n"
-# define ERROR_GENERAL_BAD_COORDINATES "Error\nbad coordinates (try <x>,<y>,<z>)\n"
+# define ERROR_ARGUMENTS_AMOUNT "Error\nbad arguments (try ./miniRT <file.rt>\n"
+# define ERROR_GENERAL_BAD_COORDINATES "Error\nbad coordinates (<x>,<y>,<z>)\n"
 # define ERROR_FILE_NOT_FOUND "Error\nfile: file not found\n"
 # define ERROR_FILE_NAME "Error\nfile: invalid file name\n"
 # define ERROR_FILE_INVALID_EXTENSION "Error\nfile: invalid extension\n"
@@ -94,6 +94,7 @@ typedef struct s_sphere
 	t_vec3	center;
 	float	diameter;
 	t_color	color;
+	float	reflection;
 }	t_sphere;
 
 typedef struct s_cylinder
@@ -103,6 +104,7 @@ typedef struct s_cylinder
 	float	diameter;
 	float	height;
 	t_color	color;
+	float	reflection;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -112,6 +114,7 @@ typedef struct s_cone
 	float	angle;
 	float	height;
 	t_color	color;
+	float	reflection;
 }	t_cone;
 
 typedef struct s_plane
@@ -119,6 +122,7 @@ typedef struct s_plane
 	t_vec3	point;
 	t_vec3	normal;
 	t_color	color;
+	float	reflection;
 }	t_plane;
 
 typedef struct s_object
