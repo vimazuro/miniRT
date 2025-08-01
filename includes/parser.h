@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/28 12:57:12 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:26:50 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_plane
 	t_vec3	normal;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_plane;
 
 typedef struct s_object

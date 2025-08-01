@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/31 15:45:43 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:23:06 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,19 @@ typedef struct s_cone_normal_data
 	t_vec3	radial_component;
 }	t_cone_normal_data;
 
+typedef struct s_checker_data
+{
+	t_vec3	normal;
+	t_vec3	origin;
+	t_vec3	ref;
+	t_vec3	u;
+	t_vec3	v;
+	t_vec3	rel;
+	float	scale;
+	int		x;
+	int		y;
+}	t_checker_data;
+
 int			main(int argc, char **argv);
 int			ft_print_error(char *text, int should_exit);
 bool		ft_hit_object(t_ray ray, t_object *obj, float *t_out,
@@ -112,6 +125,7 @@ bool		ft_intersect_sphere(t_ray ray, t_sphere sphere, float *t_out);
 bool		ft_intersect_cylinder(t_ray ray, t_cylinder cylinder, float *t_out);
 bool		ft_intersect_cone(t_ray ray, t_cone cone, float *t_out);
 bool		ft_is_in_shadow(t_data *data, t_vec3 point, t_vec3 light_pos);
+bool		ft_obj_chboard(t_object *obj);
 void		ft_callback_key(mlx_key_data_t keydata, void *param);
 void		ft_callback_close(void *param);
 void		ft_free_data(t_data *data);
@@ -137,6 +151,7 @@ t_color		color_scale(t_color color, float factor);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_multiply(t_color c1, t_color c2);
 t_color		color_lerp(t_color c1, t_color c2, float t);
+t_color		ft_get_checker_color(t_object *obj, t_vec3 p, t_color base_color);
 t_ray		ft_generate_ray(t_camera cam, t_cam_basis basis, int x, int y);
 
 #endif

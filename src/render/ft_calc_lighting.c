@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:58:23 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/31 14:29:05 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:23:58 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_color	ft_calc_lighting(t_hit_info hit, t_data *data)
 	t_color			result;
 	t_light			*lights;
 
+	if (hit.object && ft_obj_chboard(hit.object))
+		hit.color = ft_get_checker_color(hit.object, hit.hit_point, hit.color);
 	result = color_multiply(hit.color,
 			color_scale(data->ambient.color, data->ambient.lighting));
 	lights = data->lights;

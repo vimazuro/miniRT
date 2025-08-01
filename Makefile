@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/31 14:01:59 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/07/31 17:22:30 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ SRC_FILES = src/main.c \
 			src/render/ft_color_utils.c \
 			src/render/ft_get_reflection.c \
 			src/render/ft_is_in_shadow.c \
+			src/render/ft_obj_chboard.c \
+			src/render/ft_get_checker_color.c \
 
 OBJS = $(LIBFT_LIB) $(MLX42_LIB) $(SRC_FILES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/29 12:05:46 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:40:24 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_parse_plane(t_data *data, char **tokens)
 	count = 0;
 	while (tokens[count])
 		count++;
-	if (count < 4 || count > 5)
+	if (count < 4 || count > 6)
 	{
 		ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
 		return (1);
@@ -44,10 +44,19 @@ int	ft_parse_plane(t_data *data, char **tokens)
 	pl->point = ft_parse_vec3(tokens[1]);
 	pl->normal = vec3_normalize(ft_parse_vec3(tokens[2]));
 	pl->color = ft_parse_color(tokens[3]);
-	if (tokens[4])
+	pl->reflection = 0.0f;
+	pl->has_checkerboard = false;
+	if (count >= 5)
 		pl->reflection = ft_atof(tokens[4]);
-	else
-		pl->reflection = 0.0f;
+	if (count == 6)
+	{
+		if (ft_strcmp(tokens[5], "checkerboard") == 0 || ft_strcmp(tokens[5], "checkerboard\n") == 0)
+			pl->has_checkerboard = true;
+		else if (ft_strcmp(tokens[5], "none") == 0 || ft_strcmp(tokens[5], "none\n") == 0)
+			pl->has_checkerboard = false;
+		else
+			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
+	}
 	if (ft_check_position(pl->point) || ft_check_orientation(pl->normal)
 		|| ft_check_colors(&pl->color))
 	{
