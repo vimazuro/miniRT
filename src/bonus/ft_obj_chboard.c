@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:12:44 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 10:21:49 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/04 14:07:38 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ bool	ft_obj_chboard(t_object *obj)
 		return (((t_plane *)obj->data)->has_checkerboard);
 	else if (obj->type == SPHERE)
 		return (((t_sphere *)obj->data)->has_checkerboard);
+	else if (obj->type == CYLINDER)
+		return (((t_cylinder *)obj->data)->has_checkerboard);
 	return (false);
 }

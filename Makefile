@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/07/31 17:22:30 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/04 16:57:31 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT_DIR = libft/
 LIBFT_LIB = $(LIBFT_DIR)libft.a
 MLX42_DIR = MLX42/build/
 MLX42_LIB = $(MLX42_DIR)libmlx42.a
-HEADER = includes/minirt.h includes/parser.h
+HEADER = includes/minirt.h includes/parser.h includes/bonus.h
 LIBFT_HEADERS = libft/include/libft.h libft/include/ft_printf.h
 
 SRC_FILES = src/main.c \
@@ -45,10 +45,13 @@ SRC_FILES = src/main.c \
 			src/render/ft_hit_object.c \
 			src/render/ft_get_normal.c \
 			src/render/ft_color_utils.c \
-			src/render/ft_get_reflection.c \
 			src/render/ft_is_in_shadow.c \
-			src/render/ft_obj_chboard.c \
-			src/render/ft_get_checker_color.c \
+			src/bonus/ft_get_reflection.c \
+			src/bonus/ft_obj_chboard.c \
+			src/bonus/ft_get_checker_color.c \
+			src/bonus/ft_init_checker_data_plane.c \
+			src/bonus/ft_init_checker_data_sphere.c \
+			src/bonus/ft_init_cheker_data_cylinder.c \
 
 OBJS = $(LIBFT_LIB) $(MLX42_LIB) $(SRC_FILES:.c=.o)
 

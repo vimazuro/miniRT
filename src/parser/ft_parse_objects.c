@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 11:50:04 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:25:02 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,11 @@ int	ft_parse_plane(t_data *data, char **tokens)
 		else if (ft_strcmp(tokens[5], "none") == 0 || ft_strcmp(tokens[5], "none\n") == 0)
 			pl->has_checkerboard = false;
 		else
+		{
 			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
+			free(pl);
+			return (1);
+		}
 	}
 	if (ft_check_position(pl->point) || ft_check_orientation(pl->normal)
 		|| ft_check_colors(&pl->color))
@@ -92,12 +96,16 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 		sp->reflection = ft_atof(tokens[4]);
 	if (count == 6)
 	{
-		if (ft_strcmp(tokens[5], "checkerboard") == 0 || ft_strcmp(tokens[5], "checkerboard\n"))
+		if (ft_strcmp(tokens[5], "checkerboard") == 0 || ft_strcmp(tokens[5], "checkerboard\n") == 0)
 			sp->has_checkerboard = true;
 		else if (ft_strcmp(tokens[5], "none") == 0 || ft_strcmp(tokens[5], "none\n") == 0)
 			sp->has_checkerboard = false;
 		else
-			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
+		{
+			ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
+			free(sp);
+			return (1);
+		}
 	}
 	if (ft_check_position(sp->center) || sp->diameter <= 0
 		|| ft_check_colors(&sp->color))
@@ -117,7 +125,7 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	count = 0;
 	while (tokens[count])
 		count++;
-	if (count < 6 || count > 7)
+	if (count < 6 || count > 8)
 	{
 		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
 		return (1);
@@ -130,10 +138,23 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	cy->diameter = ft_atof(tokens[3]);
 	cy->height = ft_atof(tokens[4]);
 	cy->color = ft_parse_color(tokens[5]);
-	if (tokens[6])
+	cy->reflection = 0.0f;
+	cy->has_checkerboard = false;
+	if (count >= 7)
 		cy->reflection = ft_atof(tokens[6]);
-	else
-		cy->reflection = 0.0f;
+	if (count == 8)
+	{
+		if (ft_strcmp(tokens[7], "checkerboard") == 0 || ft_strcmp(tokens[7], "checkerboard\n") == 0)
+			cy->has_checkerboard = true;
+		else if (ft_strcmp(tokens[7], "none") == 0 || ft_strcmp(tokens[7], "none\n") == 0)
+			cy->has_checkerboard = false;
+		else
+		{
+			ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
+			free(cy);
+			return (1);
+		}
+	}
 	if (ft_check_position(cy->point) || ft_check_orientation(cy->orientation)
 		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color))
 	{

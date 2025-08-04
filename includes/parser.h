@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/01 16:52:29 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/04 16:37:53 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_cylinder
 	float	height;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -164,7 +165,6 @@ int		ft_parse_cylinder(t_data *data, char **tokens);
 int		ft_parse_plane(t_data *data, char **tokens);
 int		ft_parse_cone(t_data *data, char **tokens);
 int		ft_count_objects(t_counter *counter);
-int		ft_check_ratio(float ratio);
 int		ft_check_position(t_vec3 position);
 int		ft_check_orientation(t_vec3 orientation);
 int		ft_check_coordinates(char *coords);
