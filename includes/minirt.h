@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/01 16:23:06 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:34:35 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct s_cone_normal_data
 	t_vec3	radial_component;
 }	t_cone_normal_data;
 
-typedef struct s_checker_data
+typedef struct s_checker_data_plane
 {
 	t_vec3	normal;
 	t_vec3	origin;
@@ -114,7 +114,20 @@ typedef struct s_checker_data
 	float	scale;
 	int		x;
 	int		y;
-}	t_checker_data;
+}	t_checker_data_plane;
+
+typedef struct s_checker_data_sphere
+{
+	t_vec3	rel;
+	float	theta;
+	float	phi;
+	float	u;
+	float	v;
+	int		x;
+	int		y;
+	float	scale_u;
+	float	scale_v;
+}	t_checker_data_sphere;
 
 int			main(int argc, char **argv);
 int			ft_print_error(char *text, int should_exit);

@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/31 16:26:50 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:52:29 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_sphere
 	float	diameter;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_sphere;
 
 typedef struct s_cylinder
