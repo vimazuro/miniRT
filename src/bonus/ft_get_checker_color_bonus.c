@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_checker_color.c                             :+:      :+:    :+:   */
+/*   ft_get_checker_color_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:19:34 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/05 10:44:24 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:20:00 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_color	ft_get_cylinder_checker(t_object *obj, t_vec3 p,
 {
 	t_checker_data_cylinder	cy;
 
-	ft_init_cheker_data_cylinder(&cy, obj, p);
+	ft_init_checker_data_cylinder(&cy, obj, p);
 	if ((cy.x + cy.y) % 2 == 0)
 		return (base_color);
 	else
@@ -53,7 +53,7 @@ static t_color	ft_get_cone_checker(t_object *obj, t_vec3 p,
 {
 	t_checker_data_cone	cone;
 
-	ft_init_cheker_data_cone(&cone, obj, p);
+	ft_init_checker_data_cone(&cone, obj, p);
 	if ((cone.x + cone.y) % 2 == 0)
 		return (base_color);
 	else

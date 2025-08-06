@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_cheker_data_cylinder.c                     :+:      :+:    :+:   */
+/*   ft_init_checker_data_cylinder_bonus.c              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:56:17 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 17:13:48 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:18:55 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_init_checker_uv(t_checker_data_cylinder *d, t_cylinder *cy)
 	d->y = floorf(d->v * d->scale_v);
 }
 
-void	ft_init_cheker_data_cylinder(t_checker_data_cylinder *d,
+void	ft_init_checker_data_cylinder(t_checker_data_cylinder *d,
 	t_object *obj, t_vec3 p)
 {
 	t_cylinder	*cy;

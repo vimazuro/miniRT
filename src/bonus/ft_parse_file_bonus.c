@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_file.c                                    :+:      :+:    :+:   */
+/*   ft_parse_file_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:06:05 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 15:46:43 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:37:55 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	ft_parse_line(t_data *data, char *line, t_counter *counter)
 		flag = ft_parse_plane(data, tokens);
 	else if (ft_strcmp(tokens[0], "cy") == 0)
 		flag = ft_parse_cylinder(data, tokens);
+	else if (ft_strcmp(tokens[0], "co") == 0)
+		flag = ft_parse_cone(data, tokens);
 	else
 		flag = ft_print_error(ERROR_ELEMENTS_UNKNOWN, 0);
 	ft_add_object(counter, tokens[0]);

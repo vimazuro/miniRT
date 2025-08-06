@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:35:49 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 12:46:50 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:18:12 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	ft_init_checker_data_plane(t_checker_data_plane *d,
 			t_object *obj, t_vec3 p);
 void	ft_init_checker_data_sphere(t_checker_data_sphere *d,
 			t_object *obj, t_vec3 p);
-void	ft_init_cheker_data_cylinder(t_checker_data_cylinder *d,
+void	ft_init_checker_data_cylinder(t_checker_data_cylinder *d,
 			t_object *obj, t_vec3 p);
-void	ft_init_cheker_data_cone(t_checker_data_cone *d,
+void	ft_init_checker_data_cone(t_checker_data_cone *d,
 			t_object *obj, t_vec3 p);
 #endif

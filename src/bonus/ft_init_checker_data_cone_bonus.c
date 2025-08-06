@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_cheker_data_cone.c                         :+:      :+:    :+:   */
+/*   ft_init_checker_data_cone_bonus.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:44:45 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 12:45:09 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:18:26 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	ft_init_checker_uv_cone_part2(t_checker_data_cone *d)
 	}
 }
 
-void	ft_init_cheker_data_cone(t_checker_data_cone *d,
+void	ft_init_checker_data_cone(t_checker_data_cone *d,
 	t_object *obj, t_vec3 p)
 {
 	t_cone	*cone;

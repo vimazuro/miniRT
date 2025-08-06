@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/05 10:18:01 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:29:05 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct s_counter
 	int	sphere;
 	int	plane;
 	int	cylinder;
+	int	cone;
 }	t_counter;
 
 int		ft_parse_file(t_data *data, char *filename);
