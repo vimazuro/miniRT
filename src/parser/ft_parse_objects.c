@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 17:25:02 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:25:32 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int	ft_parse_cone(t_data *data, char **tokens)
 	count = 0;
 	while (tokens[count])
 		count++;
-	if (count < 6 || count > 7)
+	if (count < 6 || count > 8)
 	{
 		ft_print_error(ERROR_OBJECTS_CONE_BAD_PARAMS, 0);
 		return (1);
@@ -186,10 +186,23 @@ int	ft_parse_cone(t_data *data, char **tokens)
 	cone->angle = ft_atof(tokens[3]);
 	cone->height = ft_atof(tokens[4]);
 	cone->color = ft_parse_color(tokens[5]);
-	if (tokens[6])
+	cone->reflection = 0.0f;
+	cone->has_checkerboard = false;
+	if (count >= 7)
 		cone->reflection = ft_atof(tokens[6]);
-	else
-		cone->reflection = 0.0f;
+	if (count == 8)
+	{
+		if (ft_strcmp(tokens[7], "checkerboard") == 0 || ft_strcmp(tokens[7], "checkerboard\n") == 0)
+			cone->has_checkerboard = true;
+		else if (ft_strcmp(tokens[7], "none") == 0 || ft_strcmp(tokens[7], "none\n") == 0)
+			cone->has_checkerboard = false;
+		else
+		{
+			ft_print_error(ERROR_OBJECTS_CONE_BAD_PARAMS, 0);
+			free(cone);
+			return (1);
+		}
+	}
 	if (ft_check_position(cone->point) || ft_check_orientation(cone->orientation)
 		|| cone->angle <= 0 || cone->height <= 0 || ft_check_colors(&cone->color))
 	{

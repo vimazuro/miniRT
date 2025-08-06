@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 17:19:34 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 17:21:57 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:44:24 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ static t_color	ft_get_cylinder_checker(t_object *obj, t_vec3 p,
 		return ((t_color){0, 0, 0, 255});
 }
 
+static t_color	ft_get_cone_checker(t_object *obj, t_vec3 p,
+	t_color base_color)
+{
+	t_checker_data_cone	cone;
+
+	ft_init_cheker_data_cone(&cone, obj, p);
+	if ((cone.x + cone.y) % 2 == 0)
+		return (base_color);
+	else
+		return ((t_color){0, 0, 0, 255});
+}
+
 t_color	ft_get_checker_color(t_object *obj, t_vec3 p, t_color base_color)
 {
 	if (obj->type == PLANE)
@@ -56,5 +68,7 @@ t_color	ft_get_checker_color(t_object *obj, t_vec3 p, t_color base_color)
 		return (ft_get_sphere_checker(obj, p, base_color));
 	else if (obj->type == CYLINDER)
 		return (ft_get_cylinder_checker(obj, p, base_color));
+	else if (obj->type == CONE)
+		return (ft_get_cone_checker(obj, p, base_color));
 	return (base_color);
 }

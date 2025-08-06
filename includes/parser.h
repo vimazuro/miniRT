@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 16:37:53 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/05 10:18:01 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_cone
 	float	height;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_cone;
 
 typedef struct s_plane

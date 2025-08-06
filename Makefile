@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/08/04 16:57:31 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/05 10:46:57 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC_FILES = src/main.c \
 			src/bonus/ft_init_checker_data_plane.c \
 			src/bonus/ft_init_checker_data_sphere.c \
 			src/bonus/ft_init_cheker_data_cylinder.c \
+			src/bonus/ft_init_cheker_data_cone.c \
 
 OBJS = $(LIBFT_LIB) $(MLX42_LIB) $(SRC_FILES:.c=.o)
 
