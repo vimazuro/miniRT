@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/28 12:57:12 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:29:05 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_sphere
 	float	diameter;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_sphere;
 
 typedef struct s_cylinder
@@ -105,6 +106,7 @@ typedef struct s_cylinder
 	float	height;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -115,6 +117,7 @@ typedef struct s_cone
 	float	height;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_cone;
 
 typedef struct s_plane
@@ -123,6 +126,7 @@ typedef struct s_plane
 	t_vec3	normal;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_plane;
 
 typedef struct s_object
@@ -150,6 +154,7 @@ typedef struct s_counter
 	int	sphere;
 	int	plane;
 	int	cylinder;
+	int	cone;
 }	t_counter;
 
 int		ft_parse_file(t_data *data, char *filename);
@@ -162,7 +167,6 @@ int		ft_parse_cylinder(t_data *data, char **tokens);
 int		ft_parse_plane(t_data *data, char **tokens);
 int		ft_parse_cone(t_data *data, char **tokens);
 int		ft_count_objects(t_counter *counter);
-int		ft_check_ratio(float ratio);
 int		ft_check_position(t_vec3 position);
 int		ft_check_orientation(t_vec3 orientation);
 int		ft_check_coordinates(char *coords);

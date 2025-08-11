@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_utils_2.c                                 :+:      :+:    :+:   */
+/*   ft_parse_utils_2_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:47:45 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 16:20:22 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:40:44 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_count_objects(t_counter *counter)
 		ft_print_error(ERROR_CAMERA_BAD_COUNT, 0);
 		return (1);
 	}
-	if (counter->light != 1)
+	if (counter->light < 1)
 	{
 		ft_print_error(ERROR_LIGHT_BAD_COUNT, 0);
 		return (1);

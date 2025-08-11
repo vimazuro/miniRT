@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hit_object.c                                    :+:      :+:    :+:   */
+/*   ft_hit_object_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 16:20:18 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 15:01:14 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/06 14:59:41 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ static bool	hit_cylinder(t_ray ray, t_cylinder *cylinder,
 	return (false);
 }
 
+static bool	hit_cone(t_ray ray, t_cone *cone, float *t_out, t_color *color_out)
+{
+	if (ft_intersect_cone(ray, *cone, t_out))
+	{
+		*color_out = cone->color;
+		return (true);
+	}
+	return (false);
+}
+
 bool	ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 	t_color *color_out)
 {
@@ -54,5 +64,7 @@ bool	ft_hit_object(t_ray ray, t_object *obj, float *t_out,
 		return (hit_sphere(ray, (t_sphere *)obj->data, t_out, color_out));
 	else if (obj->type == CYLINDER)
 		return (hit_cylinder(ray, (t_cylinder *)obj->data, t_out, color_out));
+	else if (obj->type == CONE)
+		return (hit_cone(ray, (t_cone *)obj->data, t_out, color_out));
 	return (false);
 }
