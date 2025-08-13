@@ -17,6 +17,9 @@ int	ft_parse_line(t_data *data, char *line, t_counter *counter)
 	char	**tokens;
 	int		flag;
 
+	if (ft_is_blank_line(line))
+			return 0;
+
 	tokens = ft_split(line, ' ');
 	if (!tokens || !tokens[0])
 		return (ft_free_split(tokens), 1);

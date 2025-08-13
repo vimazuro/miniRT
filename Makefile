@@ -30,6 +30,7 @@ SRC_FILES = src/main.c \
 			src/parser/ft_parse_file.c \
 			src/parser/ft_parse_utils.c \
 			src/parser/ft_parse_utils_2.c \
+			src/parser/ft_parse_utils_3.c \
 			src/parser/ft_parse_objects.c \
 			src/render/ft_calc_lighting.c \
 			src/render/ft_vec3_utils1.c \
@@ -58,9 +59,13 @@ makeMLX42:
 	cmake -DDEBUG=1 -S MLX42 -B $(MLX42_DIR)
 	cmake --build $(MLX42_DIR) -j4
 
+# para mac
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX42_LIB) \
-	-L $(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
+	-L$(MLX42_DIR) -lmlx42 \
+	-L/opt/homebrew/opt/glfw/lib -lglfw \
+	-framework Cocoa -framework IOKit -framework CoreVideo \
+	-pthread -lm
 
 %.o: %.c $(HEADER) $(LIBFT_HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -c $< -o $@

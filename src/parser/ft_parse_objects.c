@@ -81,6 +81,12 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 		sp->reflection = ft_atof(tokens[4]);
 	else
 		sp->reflection = 0.0f;
+	if (sp->diameter <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_SPHERE_BAD_DIAMETER, 0);
+		free(sp);
+		return (1);
+	}
 	if (ft_check_position(sp->center) || sp->diameter <= 0
 		|| ft_check_colors(&sp->color))
 	{
