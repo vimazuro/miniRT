@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 12:31:09 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:29:50 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,17 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 	sp->center = ft_parse_vec3(tokens[1]);
 	sp->diameter = ft_atof(tokens[2]);
 	sp->color = ft_parse_color(tokens[3]);
-	sp->reflection = 0.0f;
 	sp->has_checkerboard = false;
+	if (tokens[4])
+		sp->reflection = ft_atof(tokens[4]);
+	else
+		sp->reflection = 0.0f;
+	if (sp->diameter <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_SPHERE_BAD_DIAMETER, 0);
+		free(sp);
+		return (1);
+	}
 	if (ft_check_position(sp->center) || sp->diameter <= 0
 		|| ft_check_colors(&sp->color))
 	{

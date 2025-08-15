@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/08/14 13:46:30 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/15 15:43:41 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_COMMON = src/main.c \
 			src/utils/ft_callback.c \
 			src/utils/ft_free_data.c \
 			src/parser/ft_parse_utils.c \
+			src/parser/ft_parse_utils_3.c \
 			src/render/ft_vec3_utils1.c \
 			src/render/ft_vec3_utils2.c \
 			src/render/ft_camera_basis.c \
