@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:10:13 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 16:24:16 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:58:35 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,8 @@ static int	ft_validate_plane_params(int count)
 	return (0);
 }
 
-static int	ft_parse_plane_optional(t_plane *pl, char **tokens, int count)
+static int	ft_parse_plane_textures(t_plane *pl, char **tokens, int count)
 {
-	if (count >= 5)
-		pl->reflection = ft_atof(tokens[4]);
-	if (count >= 6)
-	{
-		if (ft_parse_checkerboard(tokens, 5, &pl->has_checkerboard))
-		{
-			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
-			return (1);
-		}
-	}
 	if (count >= 7)
 	{
 		pl->texture = ft_load_texture(tokens[6], ERROR_PLANE_TEXTURE_LOAD);
@@ -57,6 +47,30 @@ static int	ft_parse_plane_optional(t_plane *pl, char **tokens, int count)
 		if (!pl->bump_map)
 			return (1);
 	}
+	return (0);
+}
+
+static int	ft_parse_plane_optional(t_plane *pl, char **tokens, int count)
+{
+	if (count >= 5)
+	{
+		pl->reflection = ft_atof(tokens[4]);
+		if (pl->reflection < 0.0f || pl->reflection > 1.0f)
+		{
+			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
+	if (count >= 6)
+	{
+		if (ft_parse_checkerboard(tokens, 5, &pl->has_checkerboard))
+		{
+			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
+	if (ft_parse_plane_textures(pl, tokens, count))
+		return (1);
 	return (0);
 }
 

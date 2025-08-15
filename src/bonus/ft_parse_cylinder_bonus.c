@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:13:37 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 16:24:04 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:04:46 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,8 @@ static int	ft_validate_cylinder_params(int count)
 	return (0);
 }
 
-static int	ft_parse_cylinder_optional(t_cylinder *cy, char **tokens, int count)
+static int	ft_parse_cylinder_textures(t_cylinder *cy, char **tokens, int count)
 {
-	if (count >= 7)
-		cy->reflection = ft_atof(tokens[6]);
-	if (count >= 8)
-	{
-		if (ft_parse_checkerboard(tokens, 7, &cy->has_checkerboard))
-		{
-			ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
-			return (1);
-		}
-	}
 	if (count >= 9)
 	{
 		cy->texture = ft_load_texture(tokens[8], ERROR_CYLINDER_TEXTURE_LOAD);
@@ -59,6 +49,30 @@ static int	ft_parse_cylinder_optional(t_cylinder *cy, char **tokens, int count)
 		if (!cy->bump_map)
 			return (1);
 	}
+	return (0);
+}
+
+static int	ft_parse_cylinder_optional(t_cylinder *cy, char **tokens, int count)
+{
+	if (count >= 7)
+	{
+		cy->reflection = ft_atof(tokens[6]);
+		if (cy->reflection < 0.0f || cy->reflection > 1.0f)
+		{
+			ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
+	if (count >= 8)
+	{
+		if (ft_parse_checkerboard(tokens, 7, &cy->has_checkerboard))
+		{
+			ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
+	if (ft_parse_cylinder_textures(cy, tokens, count))
+		return (1);
 	return (0);
 }
 

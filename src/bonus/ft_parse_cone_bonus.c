@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:15:21 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 16:26:47 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:51:56 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,14 @@ static int	ft_validate_cone_params(int count)
 static int	ft_parse_cone_optional(t_cone *cone, char **tokens, int count)
 {
 	if (count >= 7)
+	{
 		cone->reflection = ft_atof(tokens[6]);
+		if (cone->reflection < 0.0f || cone->reflection > 1.0f)
+		{
+			ft_print_error(ERROR_OBJECTS_CONE_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
 	if (count == 8)
 	{
 		if (ft_parse_checkerboard(tokens, 7, &cone->has_checkerboard))

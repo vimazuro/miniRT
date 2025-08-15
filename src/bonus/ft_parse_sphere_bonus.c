@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:12:08 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 16:24:26 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 15:02:16 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,8 @@ static int	ft_validate_sphere_params(int count)
 	return (0);
 }
 
-static int	ft_parse_sphere_optional(t_sphere *sp, char **tokens, int count)
+static int	ft_parse_sphere_textures(t_sphere *sp, char **tokens, int count)
 {
-	if (count >= 5)
-		sp->reflection = ft_atof(tokens[4]);
-	if (count >= 6)
-	{
-		if (ft_parse_checkerboard(tokens, 5, &sp->has_checkerboard))
-		{
-			ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
-			return (1);
-		}
-	}
 	if (count >= 7)
 	{
 		sp->texture = ft_load_texture(tokens[6], ERROR_SPHERE_TEXTURE_LOAD);
@@ -57,6 +47,30 @@ static int	ft_parse_sphere_optional(t_sphere *sp, char **tokens, int count)
 		if (!sp->bump_map)
 			return (1);
 	}
+	return (0);
+}
+
+static int	ft_parse_sphere_optional(t_sphere *sp, char **tokens, int count)
+{
+	if (count >= 5)
+	{
+		sp->reflection = ft_atof(tokens[4]);
+		if (sp->reflection < 0.0f || sp->reflection > 1.0f)
+		{
+			ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
+	if (count >= 6)
+	{
+		if (ft_parse_checkerboard(tokens, 5, &sp->has_checkerboard))
+		{
+			ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
+			return (1);
+		}
+	}
+	if (ft_parse_sphere_textures(sp, tokens, count))
+		return (1);
 	return (0);
 }
 
