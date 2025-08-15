@@ -6,11 +6,22 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 12:22:59 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/28 14:32:12 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:18:31 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+t_color	color_create(unsigned char r, unsigned char g, unsigned char b)
+{
+	t_color	color;
+
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.pixel_color = (r << 24) | (g << 16) | (b << 8) | 255;
+	return (color);
+}
 
 t_color	color_scale(t_color color, float factor)
 {

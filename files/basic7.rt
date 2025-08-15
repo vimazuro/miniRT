@@ -4,7 +4,7 @@ L 2.0,1.0,-3 0.9 255,255,255
 pl 0.0,-2.0,0.0 0.0,1.0,0.0 150,75,0 0.0 checkerboard textures/plank_flooring.png 
 pl 0.0,2.0,0.0 0.0,-1.0,0.0 200,200,200 0.0 checkerboard textures/denim_fabric.png textures/denim_fabric_normal.png
 pl 1.5,0.0,5.0 0.0,0.0,-1.0 100,100,255 0.0 checkerboard
-pl -3.0,0.0,0.0 1.0,0.0,0.0 100,255,100 0.0 none textures/rock_wall.png textures/rock_wall_normal.png
-pl 3.0,0.0,0.0 -1.0,0.0,0.0 255,100,100 0.0 none textures/aerial_rocks.png textures/aerial_rocks_normal.png
+pl -3.0,0.0,0.0 1.0,0.0,0.0 100,255,100 0.0 none textures/rock_wall.png
+pl 3.0,0.0,0.0 -1.0,0.0,0.0 255,100,100 0.0 none textures/aerial_rocks.png
 sp -2.0,-0.4,0.0 1.8 255,255,255 0.5
 sp 3.0,-0.4,1.0 1.5 255,255,0
