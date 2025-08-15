@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/29 12:51:00 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:19:39 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../libft/include/get_next_line.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "parser.h"
+# include "bonus.h"
 
 # include <math.h>
 # include <unistd.h>
@@ -111,13 +112,16 @@ bool		ft_intersect_plane(t_ray ray, t_plane plane, float *t_out);
 bool		ft_intersect_sphere(t_ray ray, t_sphere sphere, float *t_out);
 bool		ft_intersect_cylinder(t_ray ray, t_cylinder cylinder, float *t_out);
 bool		ft_intersect_cone(t_ray ray, t_cone cone, float *t_out);
+bool		ft_is_in_shadow(t_data *data, t_vec3 point, t_vec3 light_pos);
 void		ft_callback_key(mlx_key_data_t keydata, void *param);
 void		ft_callback_close(void *param);
 void		ft_free_data(t_data *data);
 void		ft_render_scene(t_data *data);
+void		ft_init_hit_info(t_hit_info *hit_info);
+void		ft_find_closest_hit(t_ray ray, t_object *objects,
+				t_hit_info *hit_info);
 float		vec3_length(t_vec3 v);
 float		vec3_dot(t_vec3 a, t_vec3 b);
-float		ft_get_reflection(t_object *obj);
 t_vec3		vec3(float x, float y, float z);
 t_vec3		vec3_add(t_vec3 a, t_vec3 b);
 t_vec3		vec3_sub(t_vec3 a, t_vec3 b);
@@ -128,12 +132,12 @@ t_vec3		vec3_reflect(t_vec3 dir, t_vec3 normal);
 t_vec3		ft_get_normal(t_object *obj, t_vec3 point);
 t_cam_basis	ft_camera_basis(t_camera camera);
 t_color		ft_trace_ray(t_data *data, t_ray ray);
-t_color		ft_calc_lighting(t_hit_info s_hit_info,
-				t_light *lights, t_ambient ambient);
+t_color		ft_calc_lighting(t_hit_info hit, t_data *data);
 t_color		color_scale(t_color color, float factor);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_multiply(t_color c1, t_color c2);
 t_color		color_lerp(t_color c1, t_color c2, float t);
+t_color		color_create(unsigned char r, unsigned char g, unsigned char b);
 t_ray		ft_generate_ray(t_camera cam, t_cam_basis basis, int x, int y);
 
 #endif

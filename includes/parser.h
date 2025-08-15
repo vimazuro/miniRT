@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/28 12:57:12 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:50:30 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,16 @@
 # define ERROR_LIGHT_BAD_POSITION "Error:\nlight: bad position\n"
 # define ERROR_LIGHT_BAD_BRIGHTNESS "Error:\nlight: bad brightness\n"
 # define ERROR_OBJECTS_SPHERE_BAD_PARAMS "Error:\nsphere: bad parameters\n"
+# define ERROR_OBJECTS_SPHERE_BAD_DIAMETER "Error:\nsphere: bad diameter\n"
 # define ERROR_OBJECTS_PLANE_BAD_PARAMS "Error:\nplane: bad parameters\n"
 # define ERROR_OBJECTS_CYLINDER_BAD_PARAMS "Error:\ncylinder: bad parameters\n"
 # define ERROR_OBJECTS_CONE_BAD_PARAMS "Error:\ncone: bad parameters\n"
+# define ERROR_PLANE_TEXTURE_LOAD "Error:\nplane: failed to load texture\n"
+# define ERROR_PLANE_BUMPMAP_LOAD "Error:\nplane: failed to load bump map\n"
+# define ERROR_SPHERE_TEXTURE_LOAD "Error:\nsphere: failed to load texture\n"
+# define ERROR_SPHERE_BUMPMAP_LOAD "Error:\nsphere: failed to load bump map\n"
+# define ERROR_CYLINDER_TEXTURE_LOAD "Error:\ncylinder: bad texture\n"
+# define ERROR_CYLINDER_BUMPMAP_LOAD "Error:\ncylinder: bad bump map\n"
 
 typedef struct s_color
 {
@@ -91,20 +98,26 @@ typedef enum e_object_type
 
 typedef struct s_sphere
 {
-	t_vec3	center;
-	float	diameter;
-	t_color	color;
-	float	reflection;
+	t_vec3			center;
+	float			diameter;
+	t_color			color;
+	float			reflection;
+	bool			has_checkerboard;
+	mlx_texture_t	*texture;
+	mlx_texture_t	*bump_map;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_vec3	point;
-	t_vec3	orientation;
-	float	diameter;
-	float	height;
-	t_color	color;
-	float	reflection;
+	t_vec3			point;
+	t_vec3			orientation;
+	float			diameter;
+	float			height;
+	t_color			color;
+	float			reflection;
+	bool			has_checkerboard;
+	mlx_texture_t	*texture;
+	mlx_texture_t	*bump_map;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -115,14 +128,18 @@ typedef struct s_cone
 	float	height;
 	t_color	color;
 	float	reflection;
+	bool	has_checkerboard;
 }	t_cone;
 
 typedef struct s_plane
 {
-	t_vec3	point;
-	t_vec3	normal;
-	t_color	color;
-	float	reflection;
+	t_vec3			point;
+	t_vec3			normal;
+	t_color			color;
+	float			reflection;
+	bool			has_checkerboard;
+	mlx_texture_t	*texture;
+	mlx_texture_t	*bump_map;
 }	t_plane;
 
 typedef struct s_object
@@ -150,6 +167,7 @@ typedef struct s_counter
 	int	sphere;
 	int	plane;
 	int	cylinder;
+	int	cone;
 }	t_counter;
 
 int		ft_parse_file(t_data *data, char *filename);
@@ -162,17 +180,20 @@ int		ft_parse_cylinder(t_data *data, char **tokens);
 int		ft_parse_plane(t_data *data, char **tokens);
 int		ft_parse_cone(t_data *data, char **tokens);
 int		ft_count_objects(t_counter *counter);
-int		ft_check_ratio(float ratio);
 int		ft_check_position(t_vec3 position);
 int		ft_check_orientation(t_vec3 orientation);
 int		ft_check_coordinates(char *coords);
 int		ft_check_colors(t_color *colors);
+char	**ft_remove_empty_tokens(char **tokens);
 void	ft_check_file_extension(char *filename, char *extension);
 void	ft_check_file_access(char *filename);
 void	ft_add_object(t_counter *counter, char *type);
 void	ft_free_split(char **ptr);
 void	ft_cleanup_remaining_lines(int fd);
+void	ft_transfer_object(t_data *data, int type, void *object_data);
 t_color	ft_parse_color(char *str);
 t_vec3	ft_parse_vec3(char *str);
+
+int		ft_is_blank_line(const char *s);
 
 #endif
