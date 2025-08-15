@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 10:44:45 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 14:18:26 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:49:33 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ static void	ft_init_checker_uv_cone_part2(t_checker_data_cone *d)
 	float	arc;
 	float	h;
 
-	accum = 1e-4f;
+	accum = 0.0f;
 	d->y = 0;
-	while (accum < d->current_side && d->y < 1000)
+	while (accum + 1e-6f < d->current_side && d->y < 1000)
 	{
 		t = accum / d->side_length;
 		r = d->base_radius * t;
 		arc = (2.0f * M_PI * r) / d->scale_u;
 		h = 2.0f * arc * cosf(d->angle_rad / 2.0f);
-		if (h < 1e-4f)
-			h = 1e-4f;
+		if (h < 1e-6f)
+			h = 1e-6f;
 		accum += h;
 		d->y++;
 	}

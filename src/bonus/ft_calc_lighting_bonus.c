@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 16:58:23 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 15:05:02 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/14 14:23:46 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,28 @@ static t_color	ft_apply_light(t_hit_info hit, t_light *light)
 	return (color_multiply(hit.color, lc.light_contrib));
 }
 
-t_color	ft_calc_lighting(t_hit_info hit, t_data *data)
+t_color	ft_calc_lighting(t_hit_info h, t_data *data)
 {
 	t_color			result;
 	t_light			*lights;
 
-	if (hit.object && ft_obj_chboard(hit.object))
-		hit.color = ft_get_checker_color(hit.object, hit.hit_point, hit.color);
-	result = color_multiply(hit.color,
+	if (h.object)
+	{
+		if (ft_obj_texture(h.object))
+			h.color = ft_get_texture_color(h.object, h.hit_point, h.color);
+		if (ft_obj_bump(h.object))
+			h.normal = ft_get_bump_normal(h.object, h.hit_point, h.normal);
+		if (ft_obj_chboard(h.object))
+			h.color = ft_get_checker_color(h.object, h.hit_point, h.color);
+	}
+	result = color_multiply(h.color,
 			color_scale(data->ambient.color, data->ambient.lighting));
 	lights = data->lights;
 	while (lights)
 	{
 		if (lights->brightness > 0.0f
-			&& !ft_is_in_shadow(data, hit.hit_point, lights->position))
-			result = color_add(result, ft_apply_light(hit, lights));
+			&& !ft_is_in_shadow(data, h.hit_point, lights->position))
+			result = color_add(result, ft_apply_light(h, lights));
 		lights = lights->next;
 	}
 	return (result);

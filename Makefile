@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/08/06 15:41:32 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/15 15:43:41 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_COMMON = src/main.c \
 			src/utils/ft_callback.c \
 			src/utils/ft_free_data.c \
 			src/parser/ft_parse_utils.c \
+			src/parser/ft_parse_utils_3.c \
 			src/render/ft_vec3_utils1.c \
 			src/render/ft_vec3_utils2.c \
 			src/render/ft_camera_basis.c \
@@ -44,6 +45,8 @@ SRC_COMMON = src/main.c \
 			src/render/ft_get_normal.c \
 			src/render/ft_color_utils.c \
 			src/render/ft_is_in_shadow.c \
+			src/parser/ft_transfer_object.c \
+			src/parser/ft_remove_empty_tokens.c \
 
 SRC_MANDATORY = $(SRC_COMMON) \
 			src/render/ft_trace_ray.c \
@@ -70,6 +73,18 @@ SRC_BONUS =	$(SRC_COMMON) \
 			src/bonus/ft_parse_objects_bonus.c \
 			src/bonus/ft_parse_file_bonus.c \
 			src/bonus/ft_parse_utils_2_bonus.c \
+			src/bonus/ft_obj_texture_bonus.c \
+			src/bonus/ft_get_texture_color_bonus.c \
+			src/bonus/ft_obj_bump_bonus.c \
+			src/bonus/ft_get_bump_normal_bonus.c \
+			src/bonus/ft_get_plane_texture_bonus.c \
+			src/bonus/ft_get_sphere_texture_bonus.c \
+			src/bonus/ft_get_cylinder_texture_bonus.c \
+			src/bonus/ft_get_bump_uv_bonus.c \
+			src/bonus/ft_parse_plane_bonus.c \
+			src/bonus/ft_parse_sphere_bonus.c \
+			src/bonus/ft_parse_cylinder_bonus.c \
+			src/bonus/ft_parse_cone_bonus.c \
 
 OBJS_MANDATORY = $(LIBFT_LIB) $(MLX42_LIB) $(SRC_MANDATORY:.c=.o)
 OBJS_BONUS = $(SRC_BONUS:.c=.o)

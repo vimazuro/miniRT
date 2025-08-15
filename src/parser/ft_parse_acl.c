@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:35:32 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/29 14:47:07 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:24:47 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_parse_ambient(t_data *data, char **tokens)
 	}
 	ratio = ft_atof(tokens[1]);
 	colors = ft_split(tokens[2], ',');
-	if ((ratio < 0 || ratio > 1))
+	if ((ratio < 0.1 || ratio > 1))
 	{
 		ft_free_split(colors);
 		ft_print_error(ERROR_AMBIENT_BAD_RATIO, 0);

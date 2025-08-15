@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:06:05 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/06 15:37:55 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/14 14:13:59 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_parse_line(t_data *data, char *line, t_counter *counter)
 	char	**tokens;
 	int		flag;
 
-	tokens = ft_split(line, ' ');
+	tokens = ft_remove_empty_tokens(ft_split(line, ' '));
 	if (!tokens || !tokens[0])
 		return (ft_free_split(tokens), 1);
 	if (ft_strcmp(tokens[0], "A") == 0)

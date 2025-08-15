@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:24:52 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/04 16:50:04 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:19:39 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ t_color		color_scale(t_color color, float factor);
 t_color		color_add(t_color c1, t_color c2);
 t_color		color_multiply(t_color c1, t_color c2);
 t_color		color_lerp(t_color c1, t_color c2, float t);
+t_color		color_create(unsigned char r, unsigned char g, unsigned char b);
 t_ray		ft_generate_ray(t_camera cam, t_cam_basis basis, int x, int y);
 
 #endif
