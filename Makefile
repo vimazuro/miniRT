@@ -32,6 +32,7 @@ SRC_FILES = src/main.c \
 			src/parser/ft_parse_utils_2.c \
 			src/parser/ft_parse_utils_3.c \
 			src/parser/ft_parse_objects.c \
+			src/parser/ft_parse_objects_helper.c \
 			src/render/ft_calc_lighting.c \
 			src/render/ft_vec3_utils1.c \
 			src/render/ft_vec3_utils2.c \

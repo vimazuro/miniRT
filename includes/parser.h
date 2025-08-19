@@ -40,11 +40,16 @@
 # define ERROR_LIGHT_BAD_PARAMS "Error:\nlight: bad parameters\n"
 # define ERROR_LIGHT_BAD_POSITION "Error:\nlight: bad position\n"
 # define ERROR_LIGHT_BAD_BRIGHTNESS "Error:\nlight: bad brightness\n"
+# define ERROR_OBJECTS_BAD_REFLECTION "Error:\nsphere: bad reflection\n"
 # define ERROR_OBJECTS_SPHERE_BAD_PARAMS "Error:\nsphere: bad parameters\n"
 # define ERROR_OBJECTS_SPHERE_BAD_DIAMETER "Error:\nsphere: bad diameter\n"
 # define ERROR_OBJECTS_PLANE_BAD_PARAMS "Error:\nplane: bad parameters\n"
 # define ERROR_OBJECTS_CYLINDER_BAD_PARAMS "Error:\ncylinder: bad parameters\n"
+# define ERROR_OBJECTS_CYLINDER_BAD_DIAMETER "Error:\ncylinder: bad diameter\n"
+# define ERROR_OBJECTS_CYLINDER_BAD_HEIGHT "Error:\ncylinder: bad height\n"
 # define ERROR_OBJECTS_CONE_BAD_PARAMS "Error:\ncone: bad parameters\n"
+# define ERROR_OBJECTS_CONE_BAD_ANGLE "Error:\ncone: bad angle\n"
+# define ERROR_OBJECTS_CONE_BAD_HEIGHT "Error:\ncone: bad height\n"
 
 typedef struct s_color
 {
@@ -177,5 +182,9 @@ t_color	ft_parse_color(char *str);
 t_vec3	ft_parse_vec3(char *str);
 
 int		ft_is_blank_line(const char *s);
+
+int		ft_is_float(const char *s);
+int		ft_parse_float_in_range(const char *s, float min, float max, float *diameter);
+int		ft_read_orientation(const char *s, t_vec3 *out_norm);
 
 #endif
