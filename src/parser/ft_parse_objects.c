@@ -167,13 +167,26 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	cy->texture = NULL;
 	cy->bump_map = NULL;
 	if (ft_check_position(cy->point, "cylinder") || ft_check_coordinates(tokens[1])
-		|| ft_check_orientation(cy->orientation, "cylinder")
-		|| ft_check_coordinates(tokens[2])
-		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color, "cylinder"))
+	|| ft_check_orientation(cy->orientation, "cylinder")
+	|| ft_check_coordinates(tokens[2])
+	|| ft_check_colors(&cy->color, "cylinder"))
 	{
 		free(cy);
 		return (1);
 	}
+	if (cy->diameter <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_DIAMETER, 0);
+		free(cy);
+		return (1);
+	}
+	if (cy->height <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_HEIGHT, 0);
+		free(cy);
+		return (1);
+	}
+
 	cy->orientation = vec3_normalize(cy->orientation);
 	ft_transfer_object(data, CYLINDER, cy);
 	return (0);

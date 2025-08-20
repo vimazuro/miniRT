@@ -108,11 +108,24 @@ int	ft_parse_cone(t_data *data, char **tokens)
 	if (ft_check_position(co->point, "cone") || ft_check_coordinates(tokens[1])
 		|| ft_check_orientation(co->orientation, "cone")
 		|| ft_check_coordinates(tokens[2])
-		|| co->angle <= 0 || co->height <= 0 || ft_check_colors(&co->color, "cone"))
+		|| ft_check_colors(&co->color, "cone"))
 	{
 		free(co);
 		return (1);
 	}
+	else if (co->angle <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_CONE_BAD_ANGLE, 0);
+		free(co);
+		return (1);
+	}
+	else if (co->height <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_CONE_BAD_HEIGHT, 0);
+		free(co);
+		return (1);
+	}
+
 	co->orientation = vec3_normalize(co->orientation);
 	ft_transfer_object(data, CONE, co);
 	return (0);
