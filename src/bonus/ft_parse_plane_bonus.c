@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:10:13 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/15 14:58:35 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:46:49 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 static void	ft_init_plane_base(t_plane *pl, char **tokens)
 {
-	pl->point = ft_parse_vec3(tokens[1]);
-	pl->normal = vec3_normalize(ft_parse_vec3(tokens[2]));
+	int	err;
+	
+	pl->point = ft_parse_vec3(tokens[1], &err);
+	if (err)
+	{
+		free(pl);
+		return ;
+	}
+	pl->normal = ft_parse_vec3(tokens[2], &err);
+	if (err)
+	{
+		free(pl);
+		return ;
+	}
 	pl->color = ft_parse_color(tokens[3]);
 	pl->reflection = 0.0f;
 	pl->has_checkerboard = false;
@@ -52,9 +64,16 @@ static int	ft_parse_plane_textures(t_plane *pl, char **tokens, int count)
 
 static int	ft_parse_plane_optional(t_plane *pl, char **tokens, int count)
 {
+	int	err;
+	
 	if (count >= 5)
 	{
-		pl->reflection = ft_atof(tokens[4]);
+		pl->reflection = ft_atof(tokens[4], &err);
+		if (err)
+		{
+			ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+			return (1);
+		}
 		if (pl->reflection < 0.0f || pl->reflection > 1.0f)
 		{
 			ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
@@ -93,12 +112,15 @@ int	ft_parse_plane(t_data *data, char **tokens)
 		free(pl);
 		return (1);
 	}
-	if (ft_check_position(pl->point) || ft_check_orientation(pl->normal)
-		|| ft_check_colors(&pl->color))
+	if (ft_check_position(pl->point, "plane") || ft_check_coordinates(tokens[1])
+		|| ft_check_orientation(pl->normal, "plane")
+		|| ft_check_coordinates(tokens[2])
+		|| ft_check_colors(&pl->color, "plane"))
 	{
 		free(pl);
 		return (1);
 	}
+	pl->normal = vec3_normalize(pl->normal);
 	ft_transfer_object(data, PLANE, pl);
 	return (0);
 }
