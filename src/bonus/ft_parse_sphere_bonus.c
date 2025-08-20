@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:12:08 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/15 15:02:16 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:49:19 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,21 @@
 
 static void	ft_init_sphere_base(t_sphere *sp, char **tokens)
 {
-	sp->center = ft_parse_vec3(tokens[1]);
-	sp->diameter = ft_atof(tokens[2]);
+	int	err;
+
+	sp->center = ft_parse_vec3(tokens[1], &err);
+	if (err)
+	{
+		free(sp);
+		return ;
+	}
+	sp->diameter = ft_atof(tokens[2], &err);
+	if (err)
+	{
+		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+		free(sp);
+		return ;
+	}
 	sp->color = ft_parse_color(tokens[3]);
 	sp->reflection = 0.0f;
 	sp->has_checkerboard = false;
@@ -52,9 +65,16 @@ static int	ft_parse_sphere_textures(t_sphere *sp, char **tokens, int count)
 
 static int	ft_parse_sphere_optional(t_sphere *sp, char **tokens, int count)
 {
+	int	err;
+
 	if (count >= 5)
 	{
-		sp->reflection = ft_atof(tokens[4]);
+		sp->reflection = ft_atof(tokens[4], &err);
+		if (err)
+		{
+			ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+			return (1);
+		}
 		if (sp->reflection < 0.0f || sp->reflection > 1.0f)
 		{
 			ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
@@ -84,17 +104,21 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 		count++;
 	if (ft_validate_sphere_params(count))
 		return (1);
-	sp = malloc(sizeof(t_sphere));
+	sp = ft_calloc(1, sizeof(t_sphere));
 	if (!sp)
+	{
 		ft_print_error(ERROR_MALLOC, 0);
+		return (1);
+	}
 	ft_init_sphere_base(sp, tokens);
 	if (ft_parse_sphere_optional(sp, tokens, count))
 	{
 		free(sp);
 		return (1);
 	}
-	if (ft_check_position(sp->center) || sp->diameter <= 0
-		|| ft_check_colors(&sp->color))
+	if (ft_check_position(sp->center, "sphere") || ft_check_coordinates(tokens[1])
+		|| sp->diameter <= 0
+		|| ft_check_colors(&sp->color, "sphere"))
 	{
 		free(sp);
 		return (1);

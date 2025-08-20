@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:13:37 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/15 15:04:46 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:50:39 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,34 @@
 
 static void	ft_init_cylinder_base(t_cylinder *cy, char **tokens)
 {
-	cy->point = ft_parse_vec3(tokens[1]);
-	cy->orientation = vec3_normalize(ft_parse_vec3(tokens[2]));
-	cy->diameter = ft_atof(tokens[3]);
-	cy->height = ft_atof(tokens[4]);
+	int	err;
+	
+	cy->point = ft_parse_vec3(tokens[1], &err);
+	if (err)
+	{
+		free(cy);
+		return ;
+	}
+	cy->orientation = ft_parse_vec3(tokens[2], &err);
+	if (err)
+	{
+		free(cy);
+		return ;
+	}
+	cy->diameter = ft_atof(tokens[3], &err);
+	if (err)
+	{
+		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+		free(cy);
+		return ;
+	}
+	cy->height = ft_atof(tokens[4], &err);
+	if (err)
+	{
+		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+		free(cy);
+		return ;
+	}
 	cy->color = ft_parse_color(tokens[5]);
 	cy->reflection = 0.0f;
 	cy->has_checkerboard = false;
@@ -54,9 +78,16 @@ static int	ft_parse_cylinder_textures(t_cylinder *cy, char **tokens, int count)
 
 static int	ft_parse_cylinder_optional(t_cylinder *cy, char **tokens, int count)
 {
+	int	err;
+	
 	if (count >= 7)
 	{
-		cy->reflection = ft_atof(tokens[6]);
+		cy->reflection = ft_atof(tokens[6], &err);
+		if (err)
+		{
+			ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+			return (1);
+		}
 		if (cy->reflection < 0.0f || cy->reflection > 1.0f)
 		{
 			ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
@@ -95,12 +126,15 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 		free(cy);
 		return (1);
 	}
-	if (ft_check_position(cy->point) || ft_check_orientation(cy->orientation)
-		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color))
+	if (ft_check_position(cy->point, "cylinder") || ft_check_coordinates(tokens[1])
+		|| ft_check_orientation(cy->orientation, "cylinder")
+		|| ft_check_coordinates(tokens[2])
+		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color, "cylinder"))
 	{
 		free(cy);
 		return (1);
 	}
+	cy->orientation = vec3_normalize(cy->orientation);
 	ft_transfer_object(data, CYLINDER, cy);
 	return (0);
 }

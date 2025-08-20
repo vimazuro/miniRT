@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 12:47:34 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/21 16:30:48 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:49:19 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_cam_basis	ft_camera_basis(t_camera camera)
 	basis.aspect_ratio = (float)WINDOW_W / (float)WINDOW_H;
 	basis.scale = tanf((camera.fov * M_PI / 180.0f) / 2.0f);
 	basis.forward = vec3_normalize(camera.orientation);
+	if (fabsf(vec3_dot(world_up, basis.forward)) > 0.999f)
+		world_up = vec3(0, 0, 1);
 	basis.right = vec3_normalize(vec3_cross(world_up, basis.forward));
 	basis.up = vec3_cross(basis.forward, basis.right);
 	return (basis);
