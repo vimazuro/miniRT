@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/20 16:20:04 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/21 11:23:25 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,19 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 		free(cy);
 		return (1);
 	}
+	if (cy->diameter <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_DIAMETER, 0);
+		free(cy);
+		return (1);
+	}
+	if (cy->height <= 0)
+	{
+		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_HEIGHT, 0);
+		free(cy);
+		return (1);
+	}
+
 	cy->orientation = vec3_normalize(cy->orientation);
 	ft_transfer_object(data, CYLINDER, cy);
 	return (0);

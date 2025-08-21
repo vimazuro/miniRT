@@ -16,6 +16,13 @@ BONUS_NAME = miniRT_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
+
+GLFW_PREFIX := $(shell brew --prefix glfw 2>/dev/null)
+GLFW_LIBDIR := $(GLFW_PREFIX)/lib
+FRAMEWORKS  := -framework Cocoa -framework IOKit -framework CoreVideo
+
+
+
 LIBFT_INC_DIR = libft/include 
 MLX42_INC_DIR = MLX42/include
 
@@ -101,13 +108,18 @@ makeMLX42:
 	cmake -DDEBUG=1 -S MLX42 -B $(MLX42_DIR)
 	cmake --build $(MLX42_DIR) -j4
 
+
 $(NAME): $(OBJS_MANDATORY)
-	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(NAME) $(OBJS_MANDATORY) $(LIBFT_LIB) $(MLX42_LIB) \
-	-L $(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
+	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(NAME) \
+	$(OBJS_MANDATORY) $(LIBFT_LIB) $(MLX42_LIB) \
+	-L $(MLX42_DIR) -L$(GLFW_LIBDIR) -lmlx42 -lglfw -pthread -lm $(FRAMEWORKS)
 
 $(BONUS_NAME): $(OBJS_BONUS)
-	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBFT_LIB) $(MLX42_LIB) \
-	-L $(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
+	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(BONUS_NAME) \
+	$(OBJS_BONUS) $(LIBFT_LIB) $(MLX42_LIB) \
+	-L $(MLX42_DIR) -L$(GLFW_LIBDIR) -lmlx42 -lglfw -pthread -lm $(FRAMEWORKS)
+
+
 
 %.o: %.c $(HEADER) $(LIBFT_HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -c $< -o $@
