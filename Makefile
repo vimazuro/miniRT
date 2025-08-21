@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/08/19 13:46:36 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/21 17:29:12 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,6 @@ BONUS_NAME = miniRT_bonus
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
-
-
-GLFW_PREFIX := $(shell brew --prefix glfw 2>/dev/null)
-GLFW_LIBDIR := $(GLFW_PREFIX)/lib
-FRAMEWORKS  := -framework Cocoa -framework IOKit -framework CoreVideo
-
-
 
 LIBFT_INC_DIR = libft/include 
 MLX42_INC_DIR = MLX42/include
@@ -61,6 +54,7 @@ SRC_MANDATORY = $(SRC_COMMON) \
 			src/render/ft_calc_lighting.c \
 			src/parser/ft_parse_acl.c \
 			src/parser/ft_parse_objects.c \
+			src/parser/ft_parse_objects_2.c \
 			src/parser/ft_parse_file.c \
 			src/parser/ft_parse_utils_2.c \
 
@@ -108,18 +102,13 @@ makeMLX42:
 	cmake -DDEBUG=1 -S MLX42 -B $(MLX42_DIR)
 	cmake --build $(MLX42_DIR) -j4
 
-
 $(NAME): $(OBJS_MANDATORY)
-	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(NAME) \
-	$(OBJS_MANDATORY) $(LIBFT_LIB) $(MLX42_LIB) \
-	-L $(MLX42_DIR) -L$(GLFW_LIBDIR) -lmlx42 -lglfw -pthread -lm $(FRAMEWORKS)
+	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(NAME) $(OBJS_MANDATORY) $(LIBFT_LIB) $(MLX42_LIB) \
+	-L $(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
 
 $(BONUS_NAME): $(OBJS_BONUS)
-	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(BONUS_NAME) \
-	$(OBJS_BONUS) $(LIBFT_LIB) $(MLX42_LIB) \
-	-L $(MLX42_DIR) -L$(GLFW_LIBDIR) -lmlx42 -lglfw -pthread -lm $(FRAMEWORKS)
-
-
+	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBFT_LIB) $(MLX42_LIB) \
+	-L $(MLX42_DIR) -lmlx42 -ldl -lglfw -pthread -lm
 
 %.o: %.c $(HEADER) $(LIBFT_HEADERS) Makefile
 	$(CC) $(CFLAGS) -I$(LIBFT_INC_DIR) -I$(MLX42_INC_DIR) -c $< -o $@
