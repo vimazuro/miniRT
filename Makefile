@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/08/21 15:48:46 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/21 17:29:12 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = miniRT
 BONUS_NAME = miniRT_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 LIBFT_INC_DIR = libft/include 
 MLX42_INC_DIR = MLX42/include
