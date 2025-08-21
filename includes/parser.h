@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/20 15:03:53 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:25:46 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,9 @@
 # define ERROR_LIGHT_BAD_BRIGHTNESS "Error:\nlight: bad brightness\n"
 # define ERROR_LIGHT_BAD_COLORS "Error:\nlight: bad colors\n"
 # define ERROR_OBJECTS_SPHERE_BAD_PARAMS "Error:\nsphere: bad parameters\n"
-# define ERROR_OBJECTS_SPHERE_BAD_DIAMETER "Error:\nsphere: bad diameter\n"
 # define ERROR_OBJECTS_PLANE_BAD_PARAMS "Error:\nplane: bad parameters\n"
 # define ERROR_OBJECTS_CYLINDER_BAD_PARAMS "Error:\ncylinder: bad parameters\n"
-# define ERROR_OBJECTS_CYLINDER_BAD_DIAMETER "Error:\ncylinder: bad diameter\n"
-# define ERROR_OBJECTS_CYLINDER_BAD_HEIGHT "Error:\ncylinder: bad height\n"
 # define ERROR_OBJECTS_CONE_BAD_PARAMS "Error:\ncone: bad parameters\n"
-# define ERROR_OBJECTS_CONE_BAD_ANGLE "Error:\ncone: bad angle\n"
-# define ERROR_OBJECTS_CONE_BAD_HEIGHT "Error:\ncone: bad height\n"
 # define ERROR_PLANE_TEXTURE_LOAD "Error:\nplane: failed to load texture\n"
 # define ERROR_PLANE_BUMPMAP_LOAD "Error:\nplane: failed to load bump map\n"
 # define ERROR_PLANE_BAD_COLORS "Error:\nplane: bad colors\n"
@@ -60,14 +55,19 @@
 # define ERROR_SPHERE_BUMPMAP_LOAD "Error:\nsphere: failed to load bump map\n"
 # define ERROR_SPHERE_BAD_COLORS "Error:\nsphere: bad colors\n"
 # define ERROR_SPHERE_BAD_POSITION "Error:\nsphere: bad position\n"
+# define ERROR_SPHERE_BAD_DIAMETER "Error:\nsphere: bad diameter\n"
 # define ERROR_CYLINDER_TEXTURE_LOAD "Error:\ncylinder: bad texture\n"
 # define ERROR_CYLINDER_BUMPMAP_LOAD "Error:\ncylinder: bad bump map\n"
 # define ERROR_CYLINDER_BAD_COLORS "Error:\ncylinder: bad colors\n"
 # define ERROR_CYLINDER_BAD_POSITION "Error:\ncylinder: bad position\n"
 # define ERROR_CYLINDER_BAD_ORIENTATION "Error:\ncylinder: bad orientation\n"
+# define ERROR_CYLINDER_BAD_DIAMETER "Error:\ncylinder: bad diameter\n"
+# define ERROR_CYLINDER_BAD_HEIGHT "Error:\ncylinder: bad height\n"
 # define ERROR_CONE_BAD_COLORS "Error:\ncone: bad colors\n"
 # define ERROR_CONE_BAD_POSITION "Error:\ncone: bad position\n"
 # define ERROR_CONE_BAD_ORIENTATION "Error:\ncone: bad orientation\n"
+# define ERROR_CONE_BAD_ANGLE "Error:\ncone: bad angle\n"
+# define ERROR_CONE_BAD_HEIGHT "Error:\ncone: bad height\n"
 
 typedef struct s_color
 {

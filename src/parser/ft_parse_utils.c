@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:28:55 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/20 14:24:12 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:13:02 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,18 @@ t_color	ft_parse_color(char *str)
 	return (color);
 }
 
+static int	check_vec3_error(int local_err, int *err, char **xyz)
+{
+	if (local_err)
+	{
+		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
+		ft_free_split(xyz);
+		*err = 1;
+		return (1);
+	}
+	return (0);
+}
+
 t_vec3	ft_parse_vec3(char *str, int *err)
 {
 	char	**xyz;
@@ -94,45 +106,14 @@ t_vec3	ft_parse_vec3(char *str, int *err)
 		return ((t_vec3){0, 0, 0});
 	}
 	vec3.x = ft_atof(xyz[0], &local_err);
-	if (local_err)
-	{
-		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
-		ft_free_split(xyz);
-		*err = 1;
+	if (check_vec3_error(local_err, err, xyz))
 		return ((t_vec3){0, 0, 0});
-	}
-		
 	vec3.y = ft_atof(xyz[1], &local_err);
-	if (local_err)
-	{
-		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
-		ft_free_split(xyz);
-		*err = 1;
+	if (check_vec3_error(local_err, err, xyz))
 		return ((t_vec3){0, 0, 0});
-	}
 	vec3.z = ft_atof(xyz[2], &local_err);
-	if (local_err)
-	{
-		ft_print_error(ERROR_GENERAL_BAD_FLOAT, 0);
-		ft_free_split(xyz);
-		*err = 1;
+	if (check_vec3_error(local_err, err, xyz))
 		return ((t_vec3){0, 0, 0});
-	}
 	ft_free_split(xyz);
 	return (vec3);
-}
-
-void	ft_free_split(char **ptr)
-{
-	int	i;
-
-	i = 0;
-	if (!ptr)
-		return ;
-	while (ptr[i])
-	{
-		free(ptr[i]);
-		i++;
-	}
-	free(ptr);
 }
