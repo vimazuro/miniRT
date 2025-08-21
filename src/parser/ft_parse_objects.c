@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/20 14:35:49 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:20:04 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_parse_plane(t_data *data, char **tokens)
 		ft_print_error(ERROR_OBJECTS_PLANE_BAD_PARAMS, 0);
 		return (1);
 	}
+	if (ft_check_coordinates(tokens[1]) || ft_check_coordinates(tokens[2]))
+		return (1);
 	pl = ft_calloc(1, sizeof(t_plane));
 	if (!pl)
 		ft_print_error(ERROR_MALLOC, 0);
@@ -46,9 +48,8 @@ int	ft_parse_plane(t_data *data, char **tokens)
 	pl->has_checkerboard = false;
 	pl->texture = NULL;
 	pl->bump_map = NULL;
-	if (ft_check_position(pl->point, "plane") || ft_check_coordinates(tokens[1])
+	if (ft_check_position(pl->point, "plane")
 		|| ft_check_orientation(pl->normal, "plane")
-		|| ft_check_coordinates(tokens[2])
 		|| ft_check_colors(&pl->color, "plane"))
 	{
 		free(pl);
@@ -73,6 +74,8 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 		ft_print_error(ERROR_OBJECTS_SPHERE_BAD_PARAMS, 0);
 		return (1);
 	}
+	if (ft_check_coordinates(tokens[1]))
+		return (1);
 	sp = ft_calloc(1, sizeof(t_sphere));
 	if (!sp)
 	{
@@ -104,7 +107,7 @@ int	ft_parse_sphere(t_data *data, char **tokens)
 	sp->has_checkerboard = false;
 	sp->texture = NULL;
 	sp->bump_map = NULL;
-	if (ft_check_position(sp->center, "sphere") || ft_check_coordinates(tokens[1])
+	if (ft_check_position(sp->center, "sphere")
 		|| sp->diameter <= 0
 		|| ft_check_colors(&sp->color, "sphere"))
 	{
@@ -129,6 +132,8 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 		ft_print_error(ERROR_OBJECTS_CYLINDER_BAD_PARAMS, 0);
 		return (1);
 	}
+	if (ft_check_coordinates(tokens[1]) || ft_check_coordinates(tokens[2]))
+		return (1);
 	cy = ft_calloc(1, sizeof(t_cylinder));
 	if (!cy)
 	{
@@ -166,9 +171,8 @@ int	ft_parse_cylinder(t_data *data, char **tokens)
 	cy->has_checkerboard = false;
 	cy->texture = NULL;
 	cy->bump_map = NULL;
-	if (ft_check_position(cy->point, "cylinder") || ft_check_coordinates(tokens[1])
+	if (ft_check_position(cy->point, "cylinder")
 		|| ft_check_orientation(cy->orientation, "cylinder")
-		|| ft_check_coordinates(tokens[2])
 		|| cy->diameter <= 0 || cy->height <= 0 || ft_check_colors(&cy->color, "cylinder"))
 	{
 		free(cy);

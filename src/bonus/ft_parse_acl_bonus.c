@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:35:32 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/20 14:43:20 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:52:42 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	ft_parse_camera(t_data *data, char **tokens)
 		ft_print_error(ERROR_CAMERA_BAD_PARAMS, 0);
 		return (1);
 	}
+	if (ft_check_coordinates(tokens[1]) || ft_check_coordinates(tokens[2]))
+		return (1);
 	position = ft_parse_vec3(tokens[1], &err);
 	if (err)
 		return (1);
@@ -86,9 +88,9 @@ int	ft_parse_camera(t_data *data, char **tokens)
 	if (err)
 		return (1);
 	fov = ft_atoi(tokens[3]);
-	if (ft_check_position(position, "camera") || ft_check_coordinates(tokens[1]))
+	if (ft_check_position(position, "camera"))
 		return (1);
-	if (ft_check_orientation(orientation, "camera") || ft_check_coordinates(tokens[2]))
+	if (ft_check_orientation(orientation, "camera"))
 		return (1);
 	if (fov < 0 || fov > 180)
 	{
@@ -111,6 +113,8 @@ int	ft_parse_light(t_data *data, char **tokens)
 		ft_print_error(ERROR_LIGHT_BAD_PARAMS, 0);
 		return (1);
 	}
+	if (ft_check_coordinates(tokens[1]))
+		return (1);
 	light = malloc(sizeof(t_light));
 	if (!light)
 	{
@@ -132,7 +136,7 @@ int	ft_parse_light(t_data *data, char **tokens)
 	}
 	light->color = ft_parse_color(tokens[3]);
 	light->next = data->lights;
-	if (ft_check_position(light->position, "light") || ft_check_coordinates(tokens[1]))
+	if (ft_check_position(light->position, "light"))
 	{
 		free(light);
 		return (1);

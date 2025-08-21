@@ -6,33 +6,28 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 16:10:13 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/20 14:46:49 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:46:56 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static void	ft_init_plane_base(t_plane *pl, char **tokens)
+static int	ft_init_plane_base(t_plane *pl, char **tokens)
 {
 	int	err;
 	
 	pl->point = ft_parse_vec3(tokens[1], &err);
 	if (err)
-	{
-		free(pl);
-		return ;
-	}
+		return (1);
 	pl->normal = ft_parse_vec3(tokens[2], &err);
 	if (err)
-	{
-		free(pl);
-		return ;
-	}
+		return (1);
 	pl->color = ft_parse_color(tokens[3]);
 	pl->reflection = 0.0f;
 	pl->has_checkerboard = false;
 	pl->texture = NULL;
 	pl->bump_map = NULL;
+	return (0);
 }
 
 static int	ft_validate_plane_params(int count)
@@ -103,18 +98,23 @@ int	ft_parse_plane(t_data *data, char **tokens)
 		count++;
 	if (ft_validate_plane_params(count))
 		return (1);
+	if (ft_check_coordinates(tokens[1]) || ft_check_coordinates(tokens[2]))
+		return (1);
 	pl = malloc(sizeof(t_plane));
 	if (!pl)
 		ft_print_error(ERROR_MALLOC, 0);
-	ft_init_plane_base(pl, tokens);
+	if (ft_init_plane_base(pl, tokens))
+	{
+		free(pl);
+		return (1);
+	}
 	if (ft_parse_plane_optional(pl, tokens, count))
 	{
 		free(pl);
 		return (1);
 	}
-	if (ft_check_position(pl->point, "plane") || ft_check_coordinates(tokens[1])
+	if (ft_check_position(pl->point, "plane")
 		|| ft_check_orientation(pl->normal, "plane")
-		|| ft_check_coordinates(tokens[2])
 		|| ft_check_colors(&pl->color, "plane"))
 	{
 		free(pl);
