@@ -6,7 +6,7 @@
 #    By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 11:26:33 by vimazuro          #+#    #+#              #
-#    Updated: 2025/08/15 15:43:41 by vimazuro         ###   ########.fr        #
+#    Updated: 2025/08/21 17:29:12 by vimazuro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,10 @@ SRC_MANDATORY = $(SRC_COMMON) \
 			src/render/ft_calc_lighting.c \
 			src/parser/ft_parse_acl.c \
 			src/parser/ft_parse_objects.c \
+			src/parser/ft_parse_objects_2.c \
 			src/parser/ft_parse_file.c \
 			src/parser/ft_parse_utils_2.c \
+
 
 SRC_BONUS =	$(SRC_COMMON) \
 			src/bonus/ft_get_reflection_bonus.c \

@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 15:08:22 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 14:29:20 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/19 12:18:52 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ mlx_texture_t	*ft_load_texture(char *path_token, char *error_msg)
 
 	trimmed_path = ft_strtrim(path_token, " \n\r\t");
 	texture = mlx_load_png(trimmed_path);
-	free(trimmed_path);
 	if (!texture)
 		ft_print_error(error_msg, 0);
+	free(trimmed_path);
 	return (texture);
 }

@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:05:16 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 16:50:30 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/21 12:25:46 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # define ERROR_ARGUMENTS_AMOUNT "Error\nbad arguments (try ./miniRT <file.rt>\n"
 # define ERROR_GENERAL_BAD_COORDINATES "Error\nbad coordinates (<x>,<y>,<z>)\n"
+# define ERROR_GENERAL_BAD_FLOAT "Error: bad float\n"
 # define ERROR_FILE_NOT_FOUND "Error\nfile: file not found\n"
 # define ERROR_FILE_NAME "Error\nfile: invalid file name\n"
 # define ERROR_FILE_INVALID_EXTENSION "Error\nfile: invalid extension\n"
@@ -40,17 +41,33 @@
 # define ERROR_LIGHT_BAD_PARAMS "Error:\nlight: bad parameters\n"
 # define ERROR_LIGHT_BAD_POSITION "Error:\nlight: bad position\n"
 # define ERROR_LIGHT_BAD_BRIGHTNESS "Error:\nlight: bad brightness\n"
+# define ERROR_LIGHT_BAD_COLORS "Error:\nlight: bad colors\n"
 # define ERROR_OBJECTS_SPHERE_BAD_PARAMS "Error:\nsphere: bad parameters\n"
-# define ERROR_OBJECTS_SPHERE_BAD_DIAMETER "Error:\nsphere: bad diameter\n"
 # define ERROR_OBJECTS_PLANE_BAD_PARAMS "Error:\nplane: bad parameters\n"
 # define ERROR_OBJECTS_CYLINDER_BAD_PARAMS "Error:\ncylinder: bad parameters\n"
 # define ERROR_OBJECTS_CONE_BAD_PARAMS "Error:\ncone: bad parameters\n"
 # define ERROR_PLANE_TEXTURE_LOAD "Error:\nplane: failed to load texture\n"
 # define ERROR_PLANE_BUMPMAP_LOAD "Error:\nplane: failed to load bump map\n"
+# define ERROR_PLANE_BAD_COLORS "Error:\nplane: bad colors\n"
+# define ERROR_PLANE_BAD_POSITION "Error:\nplane: bad position\n"
+# define ERROR_PLANE_BAD_ORIENTATION "Error:\nplane: bad orientation\n"
 # define ERROR_SPHERE_TEXTURE_LOAD "Error:\nsphere: failed to load texture\n"
 # define ERROR_SPHERE_BUMPMAP_LOAD "Error:\nsphere: failed to load bump map\n"
+# define ERROR_SPHERE_BAD_COLORS "Error:\nsphere: bad colors\n"
+# define ERROR_SPHERE_BAD_POSITION "Error:\nsphere: bad position\n"
+# define ERROR_SPHERE_BAD_DIAMETER "Error:\nsphere: bad diameter\n"
 # define ERROR_CYLINDER_TEXTURE_LOAD "Error:\ncylinder: bad texture\n"
 # define ERROR_CYLINDER_BUMPMAP_LOAD "Error:\ncylinder: bad bump map\n"
+# define ERROR_CYLINDER_BAD_COLORS "Error:\ncylinder: bad colors\n"
+# define ERROR_CYLINDER_BAD_POSITION "Error:\ncylinder: bad position\n"
+# define ERROR_CYLINDER_BAD_ORIENTATION "Error:\ncylinder: bad orientation\n"
+# define ERROR_CYLINDER_BAD_DIAMETER "Error:\ncylinder: bad diameter\n"
+# define ERROR_CYLINDER_BAD_HEIGHT "Error:\ncylinder: bad height\n"
+# define ERROR_CONE_BAD_COLORS "Error:\ncone: bad colors\n"
+# define ERROR_CONE_BAD_POSITION "Error:\ncone: bad position\n"
+# define ERROR_CONE_BAD_ORIENTATION "Error:\ncone: bad orientation\n"
+# define ERROR_CONE_BAD_ANGLE "Error:\ncone: bad angle\n"
+# define ERROR_CONE_BAD_HEIGHT "Error:\ncone: bad height\n"
 
 typedef struct s_color
 {
@@ -180,10 +197,10 @@ int		ft_parse_cylinder(t_data *data, char **tokens);
 int		ft_parse_plane(t_data *data, char **tokens);
 int		ft_parse_cone(t_data *data, char **tokens);
 int		ft_count_objects(t_counter *counter);
-int		ft_check_position(t_vec3 position);
-int		ft_check_orientation(t_vec3 orientation);
+int		ft_check_position(t_vec3 position, const char *obj_name);
+int		ft_check_orientation(t_vec3 orientation, const char *obj_name);
 int		ft_check_coordinates(char *coords);
-int		ft_check_colors(t_color *colors);
+int		ft_check_colors(t_color *colors, const char *obj_name);
 char	**ft_remove_empty_tokens(char **tokens);
 void	ft_check_file_extension(char *filename, char *extension);
 void	ft_check_file_access(char *filename);
@@ -192,7 +209,7 @@ void	ft_free_split(char **ptr);
 void	ft_cleanup_remaining_lines(int fd);
 void	ft_transfer_object(t_data *data, int type, void *object_data);
 t_color	ft_parse_color(char *str);
-t_vec3	ft_parse_vec3(char *str);
+t_vec3	ft_parse_vec3(char *str, int *err);
 
 int		ft_is_blank_line(const char *s);
 

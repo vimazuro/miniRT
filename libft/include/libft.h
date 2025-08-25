@@ -6,7 +6,7 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:14:40 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/07/16 14:48:34 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/20 11:57:13 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strndup(char *str, int n);
 char	*ft_strndup_shift(const char *s, size_t start, size_t len);
 char	*ft_strcpy(char *dest, const char *src);
-double	ft_atof(const char *nptr);
+double	ft_atof(const char *nptr, int *err);
 int		ft_atoi(const char *nptr);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);

@@ -6,42 +6,49 @@
 /*   By: vimazuro <vimazuro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 14:06:05 by vimazuro          #+#    #+#             */
-/*   Updated: 2025/08/14 14:13:59 by vimazuro         ###   ########.fr       */
+/*   Updated: 2025/08/21 16:35:54 by vimazuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static int	ft_parse_line_dispatch(t_data *data, char **tokens)
+{
+	if (ft_strcmp(tokens[0], "A") == 0)
+		return (ft_parse_ambient(data, tokens));
+	else if (ft_strcmp(tokens[0], "C") == 0)
+		return (ft_parse_camera(data, tokens));
+	else if (ft_strcmp(tokens[0], "L") == 0)
+		return (ft_parse_light(data, tokens));
+	else if (ft_strcmp(tokens[0], "sp") == 0)
+		return (ft_parse_sphere(data, tokens));
+	else if (ft_strcmp(tokens[0], "pl") == 0)
+		return (ft_parse_plane(data, tokens));
+	else if (ft_strcmp(tokens[0], "cy") == 0)
+		return (ft_parse_cylinder(data, tokens));
+	else if (ft_strcmp(tokens[0], "co") == 0)
+		return (ft_parse_cone(data, tokens));
+	else
+		return (ft_print_error(ERROR_ELEMENTS_UNKNOWN, 0));
+}
 
 int	ft_parse_line(t_data *data, char *line, t_counter *counter)
 {
 	char	**tokens;
 	int		flag;
 
+	if (ft_is_blank_line(line))
+		return (0);
 	tokens = ft_remove_empty_tokens(ft_split(line, ' '));
 	if (!tokens || !tokens[0])
 		return (ft_free_split(tokens), 1);
-	if (ft_strcmp(tokens[0], "A") == 0)
-		flag = ft_parse_ambient(data, tokens);
-	else if (ft_strcmp(tokens[0], "C") == 0)
-		flag = ft_parse_camera(data, tokens);
-	else if (ft_strcmp(tokens[0], "L") == 0)
-		flag = ft_parse_light(data, tokens);
-	else if (ft_strcmp(tokens[0], "sp") == 0)
-		flag = ft_parse_sphere(data, tokens);
-	else if (ft_strcmp(tokens[0], "pl") == 0)
-		flag = ft_parse_plane(data, tokens);
-	else if (ft_strcmp(tokens[0], "cy") == 0)
-		flag = ft_parse_cylinder(data, tokens);
-	else if (ft_strcmp(tokens[0], "co") == 0)
-		flag = ft_parse_cone(data, tokens);
-	else
-		flag = ft_print_error(ERROR_ELEMENTS_UNKNOWN, 0);
+	flag = ft_parse_line_dispatch(data, tokens);
 	ft_add_object(counter, tokens[0]);
 	ft_free_split(tokens);
 	return (flag);
 }
 
-void	ft_check_file_extension(char *filename, char *extension)
+void	ft_check_file(char *filename, char *extension)
 {
 	size_t	filename_len;
 	size_t	extension_len;
@@ -52,10 +59,6 @@ void	ft_check_file_extension(char *filename, char *extension)
 		ft_print_error(ERROR_FILE_NAME, 1);
 	if (ft_strcmp(filename + filename_len - extension_len, extension) != 0)
 		ft_print_error(ERROR_FILE_INVALID_EXTENSION, 1);
-}
-
-void	ft_check_file_access(char *filename)
-{
 	if (access(filename, F_OK) < 0)
 		ft_print_error(ERROR_FILE_NOT_FOUND, 1);
 	else if (access(filename, R_OK) < 0)
@@ -81,8 +84,7 @@ int	ft_parse_file(t_data *data, char *filename)
 	char		*line;
 	t_counter	counter;
 
-	ft_check_file_extension(filename, ".rt");
-	ft_check_file_access(filename);
+	ft_check_file(filename, ".rt");
 	ft_counter_init(&counter);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
